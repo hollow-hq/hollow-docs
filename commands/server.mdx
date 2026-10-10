@@ -1,0 +1,94 @@
+---
+title: "Server Management Commands"
+description: "Reference for prefixes, autoroles, sticky messages, autoresponders, booster rewards, and fake permissions."
+---
+
+import { ParamField, Note, Accordion, AccordionGroup } from '@mintlify/components'
+
+---
+
+## Prefix Commands
+
+- `,prefix add <prefix>` — Changes the guild-wide prefix. Requires `Manage Messages`.
+- `,prefix remove` — Resets the guild prefix back to `,`.
+- `,prefix self add <prefix>` — Sets a personal custom prefix for your user.
+- `,prefix self remove <prefix>` — Removes your personal custom prefix.
+- `,prefix noprefix enable` — Enables prefixless command execution for your user account.
+- `,prefix noprefix disable` — Disables prefixless mode.
+
+---
+
+## Welcome & Leave Messages
+
+- `,welcome add <channel> <message>` — Sets a welcome message for new joins.
+- `,welcome remove <channel>` — Removes a welcome message.
+- `,welcome view <channel>` — Tests and displays the welcome message.
+- `,welcome list` — Lists all channels with welcome messages configured.
+- `,leaves add <channel> <message>` — Sets a departure notification.
+- `,leaves remove <channel>` — Removes a leave notification.
+- `,leaves test <channel>` — Tests the leave notification.
+- `,leaves list` — Lists channels with leave notifications.
+
+---
+
+## Autorole Commands
+
+- `,autorole add <role>` — Adds an autorole given to all new members. Requires `Manage Roles`.
+- `,autorole remove <role>` — Removes an autorole from the join list.
+- `,autorole list` — Lists all configured autoroles.
+
+---
+
+## Sticky Messages
+
+- `,stickymessage add <channel> <message>` — Pins a sticky message that stays at the bottom of the channel. Requires `Manage Guild`.
+- `,stickymessage remove <channel>` — Removes a sticky message.
+
+---
+
+## Boost Messages
+
+- `,boosts add <channel> <message>` — Sets an announcement message triggered when someone boosts the server. Requires `Manage Messages`.
+- `,boosts remove <channel>` — Removes a boost announcement.
+- `,boosts view <channel>` — Tests the boost announcement.
+- `,boosts list` — Lists all configured boost channels.
+
+---
+
+## Autoresponders
+
+- `,autoresponder add <trigger> <response> [--delete_trigger] [--reply] [--not_strict] [--self_destruct <secs>]` — Creates an automated chat reply. Requires `Manage Messages`.
+- `,autoresponder delete <trigger>` — Deletes an autoresponder.
+- `,autoresponder list` — Displays all active autoresponders in the server.
+
+---
+
+## Booster Vanity Roles
+
+- `,boosterrole setup` — Enables the booster role module. Requires `Manage Guild`.
+- `,boosterrole disable` — Disables the module.
+- `,boosterrole base <role>` — Sets the base anchor role for positioning booster vanity roles.
+- `,boosterrole create <name>` — Boosters can create their own custom cosmetic role.
+- `,boosterrole name <name>` — Renames your booster role.
+- `,boosterrole colour <hex>` — Sets your booster role's color (e.g. `#FF5500`).
+- `,boosterrole icon <url>` — Sets your booster role icon.
+- `,boosterrole delete` — Deletes your booster role.
+
+---
+
+## Fake Permissions (`fakeperms`)
+
+Manage permissions recognized by Hollow without granting native Discord permissions:
+
+- `,fakeperms add <role> <permission>` — Grants a fake permission to a role. Requires `Administrator`.
+- `,fakeperms remove <role> <permission>` — Revokes a fake permission.
+- `,fakeperms list <role>` — Lists fake permissions assigned to a role.
+- `,fakeperms perms` — Displays all valid Discord permission flags.
+
+---
+
+## Command Aliases
+
+- `,alias add <alias> <command>` — Creates a shorthand alias (e.g. `,alias add p purge`). Requires `Manage Guild`.
+- `,alias remove <alias>` — Removes an alias.
+- `,alias list` — Lists all custom aliases in the guild.

@@ -1,0 +1,92 @@
+---
+title: "Quickstart"
+description: "Get Hollow up and running in your Discord server in under 5 minutes."
+---
+
+import { Steps, Step, Note, Tip, Card, CardGroup } from '@mintlify/components'
+
+Welcome to Hollow! Follow this quick setup checklist to test bot connectivity, configure your preferred prefixes, and set up your core moderation role.
+
+## 5-Minute Setup Flow
+
+<Steps>
+  <Step title="Verify Connectivity">
+    Send a message in any text channel where Hollow has permission to view and send messages:
+    
+    ```text
+    ,ping
+    ```
+    or use the slash command equivalent:
+    ```text
+    /ping
+    ```
+    
+    Hollow will reply with its current websocket gateway latency in milliseconds.
+  </Step>
+
+  <Step title="Configure Your Guild Prefix">
+    By default, Hollow responds to the comma (`,`) prefix in text channels. If your server already uses `,` for another bot, change Hollow's guild prefix:
+    
+    ```text
+    ,prefix add !
+    ```
+    
+    Now Hollow will respond to both `!` and mentions (`@Hollow`). If you ever need to restore the default, run:
+    ```text
+    !prefix remove
+    ```
+  </Step>
+
+  <Step title="Configure Personal Prefix (Optional)">
+    Hollow allows individual users to set personal prefixes that only apply to them:
+    
+    ```text
+    ,prefix self add .
+    ```
+    You can also enable no-prefix mode for your user account if permitted by server settings:
+    ```text
+    ,prefix noprefix enable
+    ```
+  </Step>
+
+  <Step title="Configure Staff Roles via Fakeperms">
+    Hollow features a native **Fake Permissions (`fakeperms`)** system. This allows moderators without dangerous native Discord administrator permissions to execute specific Hollow commands:
+    
+    ```text
+    ,fakeperms add @Moderator moderate_members
+    ,fakeperms add @Moderator manage_messages
+    ```
+    
+    To view all permissions assigned to a role, run:
+    ```text
+    ,fakeperms list @Moderator
+    ```
+  </Step>
+
+  <Step title="Deploy Your First Module">
+    Choose which module you'd like to activate first:
+    - **Welcome Cards:** Set a greeting message in your `#welcome` channel with `,welcome add #welcome Welcome {user.mention} to {guild.name}!`.
+    - **Join to Create Voice:** Set up temporary voice rooms with `,voicemaster setup`.
+    - **Anti-Raid Defenses:** Enable massjoin prevention with `,antiraid massjoin enable --do kick --threshold 5`.
+  </Step>
+</Steps>
+
+## Useful First Commands
+
+| Command | Description | Permission Needed |
+| :--- | :--- | :--- |
+| `,botinfo` | Shows Hollow's uptime, shard count, latency, and system stats. | Everyone |
+| `,serverinfo` | Displays detailed breakdown of the current server, channels, and boosts. | Everyone |
+| `,userinfo [@member]` | Inspects join date, creation date, permissions, and roles. | Everyone |
+| `,lockdown role [@role]` | Sets the default role targeted by channel lock commands. | Manage Channels |
+
+## Next Guides
+
+<CardGroup cols={2}>
+  <Card title="Anti-Raid Hardening" icon="shield-virus" href="/guides/antiraid-hardening">
+    Configure automated join raid defenses, young account filtering, and default avatar protection.
+  </Card>
+  <Card title="VoiceMaster Setup" icon="microphone" href="/guides/voicemaster-setup">
+    Deploy a complete "Join to Create" voice hub with interactive button controls.
+  </Card>
+</CardGroup>

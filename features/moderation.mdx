@@ -1,0 +1,124 @@
+---
+title: "Moderation"
+description: "Powerful server moderation tools including ban confirmation, channel lockouts, purge filters, and staff role stripping."
+---
+
+import { Note, Tip, Warning, Accordion, AccordionGroup } from '@mintlify/components'
+
+Hollow provides an enterprise-ready suite of moderation tools built to keep Discord communities clean and safe. Every moderation action is accompanied by interactive confirmations, role hierarchy protections, and granular message filtering.
+
+## Core Capabilities
+
+- **Interactive Ban & Kick Confirmations:** Prevents accidental staff misclicks with interactive button confirmation views before punishments are applied.
+- **Granular Purge System:** Filter and clean up chat history by user, bot, invite/web links, attachments, humans, stickers, or mentions.
+- **Channel Lockdown Automation:** Instantly lock single channels or the entire server (`lockdown all`), with channel exclusion lists.
+- **Role Management:** Mass-assign roles to all members (`role all`) or humans only (`role humans`), change hex colors, and toggle mentionability.
+- **Member Sanctions:** Timeouts (`mute` / `unmute`), image permission revocation (`imute` / `iunmute`), and reaction bans (`reactionmute` / `reactionunmute`).
+- **Emergency Staff Strip (`stripstaff`):** Instantly strip all administrative and moderation permissions/roles from a compromised staff member.
+
+---
+
+## Member Discipline
+
+### Ban & Kick
+Executing `,ban` or `,kick` opens an interactive confirmation prompt:
+
+```text
+,ban @spammer Raiding general chat
+,kick @rulebreaker Excessive warnings
+```
+
+- **User & Bot Permission:** Requires `Ban Members` / `Kick Members` (or appropriate `fakeperms`).
+- **Confirmation:** The moderator must click **Confirm** within the interactive prompt.
+- **DM Notification:** If reachable, the target receives an embed explaining the server name and punishment reason.
+
+### Timeouts & Restrictions
+Quickly silence disruptive members using native Discord timeouts:
+
+```text
+,mute @member 10m Continuous spam
+,unmute @member
+```
+
+If a member is abusing attachments or emojis without warranting a full mute:
+- `,imute @member` — Revokes image and file attachment permissions in the channel.
+- `,iunmute @member` — Restores image and file permissions.
+- `,reactionmute @member` — Strips add-reaction permissions.
+- `,reactionunmute @member` — Restores reaction permissions.
+
+### Enforced Nicknames (`forcenickname`)
+Lock a member's nickname so they cannot change it back:
+
+```text
+,forcenickname @member ModeratedName
+```
+To remove the lock and restore freedom:
+```text
+,forcenickname @member
+```
+
+---
+
+## Channel Lockdown
+
+Hollow allows you to lock down conversations during heated moments or incoming raids.
+
+<AccordionGroup>
+  <Accordion title="Locking a Single Channel">
+    Lock the current channel or a specified channel:
+    ```text
+    ,lockdown
+    ,lockdown #general Spoilers lockdown
+    ```
+    To unlock:
+    ```text
+    ,unlock #general
+    ```
+  </Accordion>
+
+  <Accordion title="Server-Wide Lockdown (lockdown all)">
+    Lock every channel in the guild simultaneously while respecting your ignored channels list:
+    ```text
+    ,lockdown all
+    ,unlock all
+    ```
+  </Accordion>
+
+  <Accordion title="Configuring Ignored Channels & Lock Role">
+    Prevent announcement or staff channels from locking during emergency locks:
+    ```text
+    ,lockdown ignore #announcements
+    ,lockdown ignored
+    ,lockdown role @CommunityMember
+    ```
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Chat Purge Filters
+
+Clean up message clutter in bulk using specialized filters (defaults to 15 messages if amount is omitted):
+
+| Command | Syntax | Description |
+| :--- | :--- | :--- |
+| `purge` | `,purge [amount]` | Bulk deletes recent messages. |
+| `purge user` | `,purge user @member [amount]` | Cleans messages sent only by the specified user. |
+| `purge bots` | `,purge bots [amount]` | Deletes messages sent by Discord bots and webhooks. |
+| `purge links` | `,purge links [amount]` | Filters messages containing URLs or Discord invites. |
+| `purge attachments` | `,purge attachments [amount]` | Removes messages containing image/file attachments. |
+| `purge humans` | `,purge humans [amount]` | Removes messages sent by non-bot members. |
+| `purge stickers` | `,purge stickers [amount]` | Cleans messages containing Discord stickers. |
+| `purge mentions` | `,purge mentions [amount]` | Deletes messages containing user or role pings. |
+
+---
+
+## Staff Protection: Emergency Strip
+
+If a moderator or administrator account is compromised, speed is critical:
+
+```text
+,stripstaff @CompromisedModerator
+```
+
+Hollow checks all roles on the target. Any role possessing dangerous administrative permissions (`administrator`, `ban_members`, `kick_members`, `manage_guild`, `manage_roles`, `manage_channels`, etc.) is immediately stripped from the user.

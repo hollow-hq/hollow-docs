@@ -1,0 +1,166 @@
+---
+title: "Server Management"
+description: "Configure prefixes, autoroles, sticky messages, autoresponders, booster vanity perks, and welcome/leave notifications."
+---
+
+import { Note, Tip, Warning, Accordion, AccordionGroup } from '@mintlify/components'
+
+The **Server Management Module** equips server owners and community managers with full control over guild identity, automated role assignments, channel persistence, and engagement messaging.
+
+---
+
+## Prefix System
+
+Hollow provides three layers of prefix management:
+
+1. **Guild Prefix:** Server-wide default prefix.
+   ```text
+   ,prefix add !
+   ,prefix remove
+   ```
+2. **Self Prefix:** Custom personal prefix that applies only to you across servers where Hollow is present.
+   ```text
+   ,prefix self add .
+   ,prefix self remove .
+   ```
+3. **No-Prefix Mode:** Allows authorized users to execute commands without typing any prefix character.
+   ```text
+   ,prefix noprefix enable
+   ,prefix noprefix disable
+   ```
+
+---
+
+## Welcome & Leave Messages
+
+Greet new members and acknowledge departing members using Hollow's embed scripting engine:
+
+```text
+# Add a welcome message to a channel
+,welcome add #welcome {embed}$v{title: Welcome to {guild.name}!}$v{description: Hey {user.mention}, you are our **{guild.count.format}** member.}$v{color: #7d7ead}
+
+# Test the welcome message
+,welcome view #welcome
+
+# List configured welcome channels
+,welcome list
+
+# Configure leave messages
+,leaves add #goodbye {user.name} has left {guild.name}. We now have {guild.count} members.
+,leaves test #goodbye
+```
+
+<Note>
+  Welcome and leave messages fully support all `{user.*}` and `{guild.*}` template variables. See the [Embed Scripting Guide](/features/embed-scripting) for full parameter references.
+</Note>
+
+---
+
+## Autorole System
+
+Ensure new arrivals immediately receive community or verification roles:
+
+```text
+# Give a role to every joining member
+,autorole add @Member
+
+# Remove an autorole
+,autorole remove @Member
+
+# List active autoroles
+,autorole list
+```
+
+---
+
+## Sticky Messages
+
+Sticky messages automatically republish themselves at the bottom of a channel whenever new chat messages are sent, guaranteeing important rules, FAQs, or event links stay visible:
+
+```text
+# Pin a sticky message to the channel
+,stickymessage add #rules Please read our server rules and verify in #verify before chatting!
+
+# Remove a sticky message
+,stickymessage remove #rules
+```
+
+---
+
+## Autoresponders
+
+Set up automated bot responses triggered by specific keywords or phrases in chat:
+
+```text
+# Add an autoresponder with optional flags
+,autoresponder add ip play.mycoolserver.com
+
+# Autoresponder with trigger deletion
+,autoresponder add secret Secret link https://example.com --delete_trigger
+
+# Remove an autoresponder
+,autoresponder delete ip
+
+# List all server autoresponders
+,autoresponder list
+```
+
+Supported flags when adding autoresponders:
+- `--delete_trigger` — Automatically deletes the user's triggering message.
+- `--reply` — Sends the response as a direct Discord reply to the author.
+- `--not_strict` — Matches the trigger keyword anywhere within a sentence.
+- `--self_destruct <seconds>` — Automatically deletes the response after a set duration.
+
+---
+
+## Custom Booster Roles
+
+Reward members who boost your Discord server with their own customized cosmetic roles:
+
+<AccordionGroup>
+  <Accordion title="Setting Up Booster Roles (Admins)">
+    Enable the booster role module and set an anchor base role:
+    ```text
+    ,boosterrole setup
+    ,boosterrole base @BoosterRoleAnchor
+    ```
+    *(Hollow will position newly created booster roles directly above this base anchor).*
+  </Accordion>
+
+  <Accordion title="Creating and Customizing (Boosters)">
+    Server boosters can create and manage their own vanity role:
+    ```text
+    # Create your role
+    ,boosterrole create My Vanity Role
+
+    # Change role name
+    ,boosterrole name VIP Star
+
+    # Set role hex color
+    ,boosterrole colour #FF7700
+
+    # Set role icon (requires Server Boost Level 2)
+    ,boosterrole icon https://i.imgur.com/example.png
+
+    # Delete your role
+    ,boosterrole delete
+    ```
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## Custom Command Aliases
+
+Define custom shorthand aliases for frequently used commands in your server:
+
+```text
+# Create a shortcut (e.g. ,p for ,purge)
+,alias add p purge
+
+# Remove an alias
+,alias remove p
+
+# List guild aliases
+,alias list
+```

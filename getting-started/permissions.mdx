@@ -1,0 +1,104 @@
+---
+title: "Permissions & Hierarchy"
+description: "Understand Discord role hierarchy, bot permissions, and Hollow's fake permissions (fakeperms) system."
+---
+
+import { Note, Tip, Warning, Accordion, AccordionGroup } from '@mintlify/components'
+
+Discord bot operations depend heavily on two critical concepts: **Role Hierarchy** and **Permission Evaluation**. Hollow provides an advanced **Fake Permissions (`fakeperms`)** system that gives server administrators precise control over staff capabilities without compromising server security.
+
+## Discord Role Hierarchy
+
+Discord enforces a strict top-down hierarchy:
+
+1. **Top Role Rule:** Hollow can only assign, remove, kick, or ban members whose highest role is **lower** than Hollow’s highest role.
+2. **Role Modification Rule:** Hollow cannot create, edit, or delete any role that is equal to or higher than its own highest role.
+3. **Owner Exemption:** The server owner is exempt from all role checks and permissions restrictions.
+
+```text
+[Role Hierarchy Diagram]
+┌─────────────────────────────────┐
+│ Server Owner                    │
+├─────────────────────────────────┤
+│ Hollow (Bot Role)               │  ◄── Must be placed above managed roles!
+├─────────────────────────────────┤
+│ Senior Staff / Administrators   │
+├─────────────────────────────────┤
+│ Moderators                      │  ◄── Can be managed / moderated by Hollow
+├─────────────────────────────────┤
+│ Members                         │
+└─────────────────────────────────┘
+```
+
+<Warning>
+  If Hollow responds with a permission error when attempting to ban someone or assign an autorole, check your Discord **Server Settings -> Roles** order immediately.
+</Warning>
+
+## Required Bot Permissions
+
+For full functionality across all modules, Hollow requires the following Discord permissions:
+
+| Permission Flag | Why Hollow Needs It |
+| :--- | :--- |
+| `Administrator` | **Recommended.** Guarantees Hollow can manage channels, view hidden channels, and moderate without missing permissions. |
+| `Manage Channels` | Required for `,lockdown`, `,unlock`, and creating temporary VoiceMaster channels. |
+| `Manage Roles` | Required for `,role`, `,autorole`, and custom booster vanity roles. |
+| `Kick Members` | Required for `,kick` and anti-raid automated actions. |
+| `Ban Members` | Required for `,ban`, `,unban`, and raid bans. |
+| `Moderate Members` | Required for timeouts (`,mute` / `,unmute`). |
+| `Manage Messages` | Required for `,purge`, autoresponder triggers, and pin management. |
+| `Send Messages` & `Embed Links` | Required for all embeds, help menus, and status alerts. |
+| `Connect` & `Speak` | Required for Music playback (`wavelink`) and TTS voice generation. |
+| `Move Members` | Required for VoiceMaster dragging, kicking, and automatic room creation. |
+
+## Fake Permissions (`fakeperms`)
+
+One of Hollow's most powerful features is **Fake Permissions**. Often, server administrators do not want to grant native Discord permissions (like native `Manage Roles` or `Moderate Members`) to junior moderators because native permissions allow users to abuse Discord's native UI.
+
+With **Fake Permissions**, you grant permissions inside Hollow's database to a specific role. Hollow will treat holders of that role as having that permission **only when executing Hollow commands**.
+
+### How Fakeperms Works
+
+When a user executes a protected command (such as `,mute`, `,warn`, or `,purge`), Hollow evaluates permissions in the following order:
+
+1. **Bot Owner Check:** Is the user a registered bot developer? (Immediate bypass).
+2. **Native Discord Permissions:** Does the user's Discord role have the native permission requested? (If yes, allowed).
+3. **Fakeperms Database:** Does the user possess a role that has been assigned the permission via `,fakeperms add`? (If yes, allowed).
+4. **Denial:** If none match, Hollow sends a permission error specifying the missing flags.
+
+### Managing Fakeperms
+
+<AccordionGroup>
+  <Accordion title="Granting a Fake Permission">
+    Assign a permission flag to a server role:
+    ```text
+    ,fakeperms add @TrialMod moderate_members
+    ,fakeperms add @ChatMod manage_messages
+    ```
+  </Accordion>
+
+  <Accordion title="Listing Permissions on a Role">
+    Inspect which fake permissions are active for a specific role:
+    ```text
+    ,fakeperms list @TrialMod
+    ```
+  </Accordion>
+
+  <Accordion title="Revoking a Fake Permission">
+    Remove a fake permission from a role:
+    ```text
+    ,fakeperms remove @TrialMod moderate_members
+    ```
+  </Accordion>
+
+  <Accordion title="Viewing Valid Permission Flags">
+    Display the complete list of supported Discord permission flags:
+    ```text
+    ,fakeperms perms
+    ```
+  </Accordion>
+</AccordionGroup>
+
+<Note>
+  Only server members with the native Discord **Administrator** permission (or the server owner) can execute `,fakeperms` configuration commands.
+</Note>

@@ -1,0 +1,44 @@
+---
+title: "Permissions Matrix"
+description: "Complete matrix mapping Discord permissions and fakeperms to Hollow commands."
+---
+
+import { Note, Tip } from '@mintlify/components'
+
+This matrix details the required **Discord User Permissions** (which can also be satisfied via Hollow's `fakeperms` system) and the **Bot Permissions** necessary for Hollow to execute each action.
+
+| Command Group | Command | Required User Permission / Fakeperm | Required Bot Permission |
+| :--- | :--- | :--- | :--- |
+| **Moderation** | `,ban` | `Ban Members` | `Ban Members` |
+| | `,unban` | `Moderate Members` or `Ban Members` | `Ban Members` |
+| | `,kick` | `Kick Members` | `Kick Members` |
+| | `,mute` / `,unmute` | `Moderate Members` | `Moderate Members` |
+| | `,imute` / `,iunmute` | `Moderate Members` | `Manage Channels` |
+| | `,reactionmute` / `,reactionunmute` | `Moderate Members` | `Manage Channels` |
+| | `,forcenickname` | `Manage Nicknames` | `Manage Nicknames` |
+| | `,nuke` | `Manage Guild` | `Manage Channels` |
+| | `,stripstaff` | `Administrator` | `Manage Roles` |
+| | `,lockdown` / `,unlock` | `Manage Channels` | `Manage Channels` |
+| | `,purge` (all variants) | `Manage Messages` | `Manage Messages` |
+| | `,role` (all variants) | `Manage Roles` | `Manage Roles` |
+| | `,channel` (create/del/nsfw) | `Manage Channels` | `Manage Channels` |
+| **Anti-Raid** | `,antiraid` (all subcommands) | `Manage Guild` | `Kick Members`, `Ban Members` |
+| **VoiceMaster** | `,voicemaster setup` / `reset` | `Manage Guild`, `Manage Channels` | `Manage Channels`, `Move Members` |
+| | `,voicemaster` (user commands) | Channel Owner | `Manage Channels`, `Move Members` |
+| **Server** | `,prefix add` / `remove` | `Manage Messages` | `Send Messages` |
+| | `,autorole add` / `remove` | `Manage Roles` | `Manage Roles` |
+| | `,welcome` (all subcommands) | `Manage Messages` | `Send Messages`, `Embed Links` |
+| | `,leaves` (all subcommands) | `Manage Messages` | `Send Messages`, `Embed Links` |
+| | `,boosts` (all subcommands) | `Manage Messages` | `Send Messages`, `Embed Links` |
+| | `,stickymessage` | `Manage Guild` | `Manage Messages` |
+| | `,autoresponder` | `Manage Messages` | `Manage Messages` |
+| | `,boosterrole setup` / `base` | `Manage Guild` | `Manage Roles` |
+| | `,fakeperms` (all subcommands) | `Administrator` | None |
+| | `,alias` | `Manage Guild` | None |
+| **AI** | `,chatbot enable` / `disable` | `Manage Guild` | `Send Messages` |
+| | `,chatbot channel set` | `Manage Guild` | `Send Messages`, `View Channel` |
+| **Fun** | `,birthday channel` / `role` | `Manage Guild` | `Manage Roles`, `Send Messages` |
+| **Utility** | `,pin` / `,unpin` | `Manage Messages` | `Manage Messages` |
+| | `,emoji steal` / `remove` | `Manage Expressions` | `Manage Expressions` |
+| | `,createembed` | `Manage Messages` | `Embed Links`, `Send Messages` |
+| | General user commands | Everyone | `Send Messages`, `Embed Links` |

@@ -1,0 +1,87 @@
+---
+title: "Embed Scripting Engine"
+description: "Master Hollow's Bleed-style embed parser syntax with parameters, fields, buttons, and dynamic variables."
+---
+
+import { Note, Tip, Warning, CodeGroup } from '@mintlify/components'
+
+Hollow incorporates a powerful embed scripting engine compatible with Bleed-style syntax. With embed scripting, you can build rich announcement cards, welcome messages, booster alerts, and interactive links without external JSON editors.
+
+---
+
+## Basic Syntax Structure
+
+Every script begins with `{embed}`. Separate parts and attributes using `$v`:
+
+```text
+{embed}$v{title: Hello World}$v{description: This is an embed message!}$v{color: #7d7ead}
+```
+
+To create an embed directly in your channel:
+```text
+,createembed {embed}$v{title: Server Rules}$v{description: Be respectful to all members.}$v{color: #7d7ead}
+```
+
+---
+
+## Supported Embed Parameters
+
+| Parameter | Syntax | Description |
+| :--- | :--- | :--- |
+| `content:` | `{content: text}` | Plain message text outside the embed box. |
+| `title:` | `{title: text}` | The embed title header. |
+| `description:` | `{description: text}` | The main body of the embed. |
+| `color:` | `{color: #hex}` | Left accent bar color (hex code). |
+| `image:` | `{image: url}` | Large image at the bottom of the embed. |
+| `thumbnail:` | `{thumbnail: url}` | Small icon in the top right corner. |
+| `author:` | `{author: name && icon_url && url}` | Author header line. Separate values with ` && `. |
+| `field:` | `{field: name && value && inline}` | Embed field. Inline can be `true` or `false`. |
+| `footer:` | `{footer: text && icon_url}` | Bottom footer text and icon. |
+| `button:` | `{button: label:Text && url:https://... && emoji:🔗 && style:blue}` | Interactive link or callback button. |
+
+---
+
+## Dynamic Scripting Variables
+
+Embed templates dynamically resolve member and server variables at runtime:
+
+### Member Variables
+- `{user}` — Username and discriminator (e.g. `voby#0`).
+- `{user.name}` — Username.
+- `{user.mention}` — Mentions the member (`@user`).
+- `{user.avatar}` — Direct CDN URL to member avatar.
+- `{user.joined_at}` — Relative timestamp of server join date (e.g. `3 days ago`).
+- `{user.created_at}` — Relative timestamp of Discord account registration.
+
+### Guild Variables
+- `{guild.name}` — The name of the server.
+- `{guild.id}` — Server ID.
+- `{guild.count}` — Total member count number.
+- `{guild.count.format}` — Ordinal member count (e.g. `10th`, `100th`, `1,000th`).
+- `{guild.icon}` — URL of the server icon.
+- `{guild.created_at}` — Relative timestamp when the server was created.
+- `{guild.boost_count}` — Number of active server boosts.
+- `{guild.booster_count}` — Number of members who have boosted.
+- `{guild.boost_tier}` — Server boost level tier (0, 1, 2, or 3).
+- `{guild.vanity}` — Server custom invite vanity code.
+
+---
+
+## Practical Examples
+
+### Welcome Card
+```text
+{embed}$v{title: Welcome to {guild.name}!}$v{description: Hey {user.mention}, thank you for joining! You are our **{guild.count.format}** member.}$v{thumbnail: {user.avatar}}$v{color: #7d7ead}$v{footer: Account created {user.created_at}}
+```
+
+### Announcement with Buttons
+```text
+{embed}$v{title: Community Guidelines}$v{description: Please review our community terms and verify before chatting.}$v{color: #2F3136}$v{button: label:Website && url:https://hollow-phi.vercel.app && emoji:🌐 && style:blue}
+```
+
+### Extracting Embed Code
+If you see an embed in your server and want to view or copy its scripting code, run:
+```text
+,embedcode <message link>
+```
+Hollow will reverse-engineer the embed and return the exact `{embed}$v...` code!

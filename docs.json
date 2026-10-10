@@ -1,34 +1,101 @@
 {
   "$schema": "https://mintlify.com/docs.json",
   "theme": "mint",
-  "name": "Mintlify Starter Kit",
+  "name": "Hollow",
   "colors": {
-    "primary": "#16A34A",
-    "light": "#07C983",
-    "dark": "#15803D"
+    "primary": "#7d7ead",
+    "light": "#9fa0cf",
+    "dark": "#5a5a8c"
   },
   "favicon": "/favicon.svg",
   "navigation": {
-    "pages": [
+    "tabs": [
       {
-        "group": "Getting Started",
-        "pages": [
-          "index",
-          "quickstart"
+        "tab": "Documentation",
+        "groups": [
+          {
+            "group": "Get Started",
+            "pages": [
+              "index",
+              "getting-started/invite",
+              "getting-started/quickstart",
+              "getting-started/permissions"
+            ]
+          },
+          {
+            "group": "Core Modules",
+            "pages": [
+              "features/moderation",
+              "features/antiraid",
+              "features/voicemaster",
+              "features/server-management",
+              "features/music",
+              "features/ai",
+              "features/lastfm",
+              "features/fun",
+              "features/utility",
+              "features/embed-scripting"
+            ]
+          },
+          {
+            "group": "Step-by-Step Guides",
+            "pages": [
+              "guides/first-time-setup",
+              "guides/antiraid-hardening",
+              "guides/voicemaster-setup",
+              "guides/custom-embeds"
+            ]
+          },
+          {
+            "group": "Support & Reference",
+            "pages": [
+              "reference/faq",
+              "reference/troubleshooting",
+              "reference/permissions-matrix",
+              "reference/terms",
+              "reference/privacy"
+            ]
+          }
+        ]
+      },
+      {
+        "tab": "Commands",
+        "groups": [
+          {
+            "group": "Overview",
+            "pages": [
+              "commands/overview"
+            ]
+          },
+          {
+            "group": "Command Reference",
+            "pages": [
+              "commands/moderation",
+              "commands/antiraid",
+              "commands/voicemaster",
+              "commands/server",
+              "commands/music",
+              "commands/ai",
+              "commands/lastfm",
+              "commands/fun",
+              "commands/information",
+              "commands/utility"
+            ]
+          }
         ]
       }
     ],
     "global": {
       "anchors": [
         {
-          "anchor": "Documentation",
-          "href": "https://mintlify.com/docs",
-          "icon": "book-open-cover"
+          "anchor": "Bot Website",
+          "href": "https://hollow-phi.vercel.app/",
+          "icon": "globe"
         },
         {
-          "anchor": "Blog",
-          "href": "https://mintlify.com/blog",
-          "icon": "newspaper"
+          "anchor": "Support Server",
+          "href": "https://discord.gg/vpx72Zue2R",
+          "icon": "discord"
         }
       ]
     }
@@ -40,33 +107,30 @@
   "navbar": {
     "links": [
       {
-        "label": "Support",
-        "href": "mailto:support@mintlify.com"
+        "label": "Support Discord",
+        "href": "https://discord.gg/vpx72Zue2R"
+      },
+      {
+        "label": "Status",
+        "href": "https://hollow.js.cool"
       }
     ],
     "primary": {
       "type": "button",
-      "label": "Dashboard",
-      "href": "https://app.mintlify.com"
+      "label": "Invite Hollow",
+      "href": "https://discord.com/oauth2/authorize?client_id=1447869784937988201&permissions=8&scope=bot%20applications.commands"
     }
   },
   "contextual": {
     "options": [
       "copy",
-      "view",
-      "chatgpt",
-      "claude",
-      "perplexity",
-      "mcp",
-      "cursor",
-      "vscode"
+      "view"
     ]
   },
   "footer": {
     "socials": {
-      "x": "https://x.com/mintlify",
-      "github": "https://github.com/mintlify",
-      "linkedin": "https://linkedin.com/company/mintlify"
+      "discord": "https://discord.gg/vpx72Zue2R",
+      "website": "https://hollow-phi.vercel.app/"
     }
   }
 }

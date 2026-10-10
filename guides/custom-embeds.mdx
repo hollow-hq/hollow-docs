@@ -1,0 +1,53 @@
+---
+title: "Custom Embeds Guide"
+description: "How to design, format, and deploy customized embeds with buttons, fields, and author branding using Hollow."
+---
+
+import { Steps, Step, Note, Tip, CodeGroup } from '@mintlify/components'
+
+Discord embeds transform ordinary text messages into professional, branded announcements. With Hollow's Bleed-style embed engine, you can build multi-part embeds with buttons, images, and live data variables.
+
+---
+
+## Anatomy of an Embed Script
+
+Hollow uses a simple delimiter syntax:
+- Every script starts with `{embed}`.
+- Every parameter is separated by `$v`.
+- Individual key-values inside complex parameters (like `author:`, `field:`, or `button:`) are separated by ` && `.
+
+```text
+{embed}$v{title: Title Here}$v{description: Description Here}$v{color: #7d7ead}
+```
+
+---
+
+## Step-by-Step Examples
+
+### 1. Verification & Rules Embed
+```text
+,createembed {embed}$v{title: Welcome to Hollow Community!}$v{description: Please read our community guidelines below before chatting.\n\n• Be respectful to other members\n• No hate speech or harassment\n• Keep media in the appropriate channels}$v{color: #7d7ead}$v{thumbnail: {guild.icon}}$v{footer: Protected by Hollow Anti-Raid}$v{button: label:Verify Here && url:https://hollow-phi.vercel.app && emoji:✅ && style:green}
+```
+
+### 2. Multi-Field Server Information Card
+```text
+,createembed {embed}$v{author: {guild.name} Statistics && {guild.icon}}$v{description: Community status overview as of today.}$v{field: Member Count && {guild.count} members && true}$v{field: Server Boosts && Level {guild.boost_tier} ({guild.boost_count} boosts) && true}$v{color: #2F3136}$v{footer: Server Created: {guild.created_at}}
+```
+
+### 3. Media & Announcement Embed
+```text
+,createembed {embed}$v{title: Community Game Night!}$v{description: Join us in voice chat this Saturday at 8 PM EST for game night!}$v{image: https://images.unsplash.com/photo-1511512578047-dfb367046420?auto=format&fit=crop&w=800&q=80}$v{color: #FF5500}$v{button: label:Join Event && url:https://discord.gg/vpx72Zue2R && emoji:🎮 && style:blue}
+```
+
+---
+
+## Extracting Embeds (`embedcode`)
+
+Ever see an embed in your server and wonder how it was made? You don't have to rebuild it manually:
+
+1. Right-click or copy the message link of the embed in Discord.
+2. Execute:
+   ```text
+   ,embedcode https://discord.com/channels/12345/67890/111222333
+   ```
+3. Hollow will parse the embed and return the raw `{embed}$v...` code for you to copy and modify!

@@ -1,0 +1,82 @@
+---
+title: "Music & Audio"
+description: "High-fidelity music streaming, smart queuing, volume controls, and real-time audio filter presets."
+---
+
+import { Note, Tip, Warning, Card, CardGroup } from '@mintlify/components'
+
+Hollow's music engine delivers high-performance, crystal-clear audio streaming directly into your Discord voice channels. Powered by high-speed audio nodes, Hollow supports search queries, playlists, volume normalization, and real-time DSP filter presets.
+
+---
+
+## Getting Started with Music
+
+To start listening, join any voice channel in your Discord server and execute:
+
+```text
+,play lofi hip hop radio
+```
+or provide a direct URL:
+```text
+,play https://www.youtube.com/watch?v=jfKfPfyJRdk
+```
+
+Hollow will automatically connect to your voice channel, enqueue the track or playlist, and begin playback.
+
+---
+
+## Playback Commands
+
+| Command | Syntax | Description |
+| :--- | :--- | :--- |
+| `play` | `,play <search or URL>` | Searches for tracks or enqueues playlists. |
+| `skip` | `,skip` | Skips the currently playing track. |
+| `stop` | `,stop` | Stops playback, flushes the queue, and leaves the voice channel. |
+| `volume` | `,volume <1-100>` | Adjusts output volume percentage. |
+| `preset` | `,preset [name]` | Applies real-time audio equalization/filter presets. |
+
+---
+
+## Audio Filter Presets
+
+Transform your listening experience with real-time DSP audio filters:
+
+<CardGroup cols={2}>
+  <Card title="8D Audio" icon="arrows-rotate">
+    Spatial rotation audio filter that pans sound dynamically across left and right stereo channels.
+    ```text
+    ,preset 8d
+    ```
+  </Card>
+  <Card title="Nightcore" icon="bolt-lightning">
+    Increases audio speed and pitch by 1.3x for high-energy playback.
+    ```text
+    ,preset nightcore
+    ```
+  </Card>
+  <Card title="Daycore (Slowed)" icon="moon">
+    Slows down audio rate and lowers pitch by 0.7x for a relaxed, chopped atmosphere.
+    ```text
+    ,preset daycore
+    ```
+  </Card>
+  <Card title="Earrape / Distortion" icon="volume-high">
+    Overdrives audio gain and applies harmonic sinusoidal distortion.
+    ```text
+    ,preset earrape
+    ```
+  </Card>
+</CardGroup>
+
+To clear all active audio filters and restore original studio playback:
+```text
+,preset off
+```
+
+---
+
+## Inactivity & Timeout Behavior
+
+To preserve bandwidth and resources:
+- If Hollow's music queue becomes empty and no new tracks are enqueued within **10 seconds**, the player automatically disconnects from the voice channel and resets the bot's status presence.
+- If all human members leave the voice channel, the music player is marked inactive and will disconnect.

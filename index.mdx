@@ -1,20 +1,77 @@
 ---
 title: "Introduction"
-description: "Welcome to your project"
+description: "Welcome to Hollow — Discord's premier guild-app for moderation, antiraid, temporary voice channels, and server automation."
 ---
 
-Write a short description of your product here. What it does, who it's for, and what they can accomplish with it.
+import { Card, CardGroup } from '@mintlify/components'
 
-<Tip>
-  Ready to make this your own? Start by editing this page. Update your `docs.json` file to customize your site. Then fill out the [Quickstart](/quickstart) page.
-</Tip>
+<img
+  className="rounded-xl shadow-lg border border-white/10"
+  src="https://hollow-phi.vercel.app/assets/logo.png"
+  alt="Hollow banner"
+  width="120"
+  height="120"
+/>
 
-<Card title="Quickstart" icon="rocket" href="/quickstart">
-  This card links to the quickstart page in your project.
-</Card>
-<Card title="Components" icon="puzzle-piece" href="https://mintlify.com/docs/components">
-  Add cards, callouts, steps, tabs, and more to design and structure your pages.
-</Card>
-<Card title="Settings" icon="gear" href="https://mintlify.com/docs/organize/settings">
-  Set your site name, branding, and navigation in the `docs.json` file.
-</Card>
+# Welcome to Hollow
+
+**Hollow** is Discord's premier all-in-one guild bot designed for communities of every scale. Built with low-latency shard routing, native slash commands, responsive text commands, and deep Discord feature integration, Hollow equips server administrators with enterprise-grade moderation, automated join protection, temporary voice channels, rich embed scripting, and entertainment modules.
+
+<CardGroup cols={2}>
+  <Card title="Invite Hollow" icon="paper-plane" href="/getting-started/invite">
+    Add Hollow to your Discord server with the required OAuth2 scopes and permissions.
+  </Card>
+  <Card title="Quickstart Guide" icon="bolt" href="/getting-started/quickstart">
+    Set up your prefix, configure staff permissions, and run your first commands in minutes.
+  </Card>
+  <Card title="Permission Hierarchy" icon="shield-check" href="/getting-started/permissions">
+    Understand Discord role hierarchy, required bot permissions, and Hollow's fake permissions system.
+  </Card>
+  <Card title="Command Reference" icon="terminal" href="/commands/overview">
+    Explore the full list of slash and prefix commands categorized by feature module.
+  </Card>
+</CardGroup>
+
+## Core Modules at a Glance
+
+<CardGroup cols={3}>
+  <Card title="Moderation" icon="gavel" href="/features/moderation">
+    Role management, kick/ban with confirmation workflows, lock/unlock channels, purge message filters, and nickname enforcement.
+  </Card>
+  <Card title="Anti-Raid Protection" icon="shield-halved" href="/features/antiraid">
+    Automated raid defenses: detect mass join waves, quarantine young suspect alt accounts, and filter default avatar users.
+  </Card>
+  <Card title="VoiceMaster (Join to Create)" icon="waveform-lines" href="/features/voicemaster">
+    Dynamic voice channels managed via an interactive button dashboard with name, limit, bitrate, lock, and privacy controls.
+  </Card>
+  <Card title="Server Management" icon="sliders" href="/features/server-management">
+    Custom guild and personal prefixes, autoroles (all/humans/bots), sticky messages, autoresponders, booster rewards, and leave announcements.
+  </Card>
+  <Card title="Music & Audio" icon="compact-disc" href="/features/music">
+    High-fidelity music playback powered by NodeLink with volume adjustment and real-time audio filter presets (8D, nightcore, daycore).
+  </Card>
+  <Card title="AI Chat & Imagine" icon="sparkles" href="/features/ai">
+    Natural conversational AI chatbot channels, AI image generation, and multi-voice text-to-speech.
+  </Card>
+  <Card title="Last.fm Integration" icon="headphones" href="/features/lastfm">
+    Real-time now-playing cards, scrobble statistics, top artist leaderboards, and library recommendations.
+  </Card>
+  <Card title="Fun & Social" icon="gamepad" href="/features/fun">
+    Community birthday celebration scheduler, encrypted private diary entries, meters, 8ball, and matchmaking roasts.
+  </Card>
+  <Card title="Embed Scripting Engine" icon="code" href="/features/embed-scripting">
+    Bleed-style parser syntax (`{embed}$v{title:...}`) for fully customized welcome cards, booster alerts, and response embeds.
+  </Card>
+</CardGroup>
+
+## Command Invocation Styles
+
+Hollow supports two invocation styles interchangeably:
+
+1. **Discord Slash Commands (`/`):** Native autocomplete, typed parameters, and argument validation directly in your Discord client.
+2. **Prefix Text Commands (Default `,`):** Fast, classic Discord bot commands. You can change the guild prefix using `,prefix add <symbol>` or assign your own personal prefix with `,prefix self add <symbol>`. Mentioning the bot (`@Hollow`) also works as a universal prefix.
+
+<Note>
+  Hollow respects strict Discord role hierarchy. Make sure the `Hollow` role is positioned above any member roles it is expected to manage or moderate.
+</Note>
+

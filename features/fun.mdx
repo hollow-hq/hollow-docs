@@ -1,0 +1,66 @@
+---
+title: "Fun & Social"
+description: "Community birthday celebrations, encrypted personal diary, trait meters, roasts, 8ball, and social matchmaking."
+---
+
+import { Note, Tip, Accordion, AccordionGroup } from '@mintlify/components'
+
+Hollow includes a rich collection of interactive entertainment and community-building commands designed to boost chat activity and engagement.
+
+---
+
+## 1. Birthday System
+
+Never miss a member's birthday again. Hollow tracks birthdays, displays upcoming celebrations, and automatically announces birthdays with custom celebratory roles.
+
+### User Commands
+- `,birthday set <month/day or month/day/year>` — Register your birthday (e.g. `birthday set 04/15` or `birthday set April 15 2004`).
+- `,birthday view [@member]` — View registered birthday date and age.
+- `,birthday list` — Paginated list of all registered member birthdays in the server.
+- `,birthday next` — Displays the next upcoming server birthday.
+- `,birthday lock` — Lock your birthday so it cannot be altered without unlocking.
+- `,birthday unlock` — Unlock your birthday.
+- `,birthday reset` — Remove your registered birthday.
+
+### Admin Setup
+```text
+# Designate the birthday announcement channel
+,birthday channel #birthdays
+
+# Assign a temporary birthday celebration role
+,birthday role @BirthdayStar
+
+# Add roles to ping on announcements
+,birthday celebrate add @AnnouncementsPing
+
+# Disable the birthday system
+,birthday disable
+```
+
+---
+
+## 2. Personal Diary
+
+Keep personal notes, thoughts, and memories directly in Hollow:
+
+- `,diary add <entry text>` — Adds a timestamped diary entry.
+- `,diary view <entry_id>` — Reads a specific diary entry.
+- `,diary privacy <entry_id>` — Toggles an entry between private (only you can see it) and public.
+- `,diary remove <entry_id>` — Deletes an entry.
+- `,diary` — Lists your diary entries.
+
+---
+
+## 3. Meters & Matchmaking
+
+Playful entertainment commands for banter and chat games:
+
+- `,howgay [@member]` — Measures gay percentage with a visual progress bar.
+- `,howlesbian [@member]` — Measures lesbian percentage.
+- `,howautism [@member]` — Measures autism spectrum score.
+- `,howsimp [@member]` — Rates how much of a simp the user is.
+- `,bitches [@member]` — Humorous count of the user's bitches.
+- `,ship @user1 [@user2]` — Calculates romantic compatibility score between two members.
+- `,roast [@member]` — Generates an AI-crafted roast.
+- `,8ball <question>` — Consults the magic 8-ball for answers.
+- `,base64 encode <text>` / `,base64 decode <text>` — Base64 string encoding and decoding.

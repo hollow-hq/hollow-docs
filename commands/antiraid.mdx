@@ -1,0 +1,110 @@
+---
+title: "Anti-Raid Commands"
+description: "Reference for configuring Hollow's mass join detection, new account quarantine, and default avatar protection."
+---
+
+import { ParamField, Note, Tip } from '@mintlify/components'
+
+All anti-raid commands require the **Manage Guild** permission (or `fakeperms` `manage_guild`).
+
+---
+
+## Status & Configuration
+
+### `antiraid settings`
+Displays an overview embed showing whether each protection layer is active, its punishment type (`kick` or `ban`), and its trigger threshold.
+
+- **Usage:** `,antiraid settings` (Aliases: `,antiraid stats`, `,antiraid config`)
+- **Example output:** Shows status for Mass Join, Default Avatar, and New Accounts.
+
+---
+
+## Mass Join Protection
+
+### `antiraid massjoin enable`
+Enables automatic punishment when an influx of members joins within 10 seconds.
+
+- **Usage:** `,antiraid massjoin enable --do <kick|ban> --threshold <number>`
+- **Aliases:** `,antiraid massjoin on`
+- **Example:** `,antiraid massjoin enable --do ban --threshold 5`
+
+<ParamField path="--do" type="string" required>
+  Action to take on raiders: `kick` or `ban`.
+</ParamField>
+<ParamField path="--threshold" type="integer" required>
+  Number of joins within 10 seconds that triggers mass join protection.
+</ParamField>
+
+### `antiraid massjoin disable`
+Disables mass join detection.
+
+- **Usage:** `,antiraid massjoin disable` (Alias: `,antiraid massjoin off`)
+
+---
+
+## New Accounts Protection
+
+### `antiraid newaccounts on`
+Enables automatic punishment for accounts younger than a specified number of days.
+
+- **Usage:** `,antiraid newaccounts on --do <kick|ban> --threshold <days>`
+- **Aliases:** `,antiraid newaccounts enable`
+- **Example:** `,antiraid newaccounts on --do kick --threshold 7`
+
+<ParamField path="--do" type="string" required>
+  Action to take: `kick` or `ban`.
+</ParamField>
+<ParamField path="--threshold" type="integer" required>
+  Account age threshold in days.
+</ParamField>
+
+### `antiraid newaccounts disable`
+Disables young account filtering.
+
+- **Usage:** `,antiraid newaccounts disable` (Alias: `,antiraid newaccounts off`)
+
+### `antiraid newaccounts whitelist`
+Allows a specific young account to join the server without being kicked or banned.
+
+- **Usage:** `,antiraid newaccounts whitelist <user>`
+- **Example:** `,antiraid newaccounts whitelist @Friend`
+
+---
+
+## Default Avatar Protection
+
+### `antiraid defaultavatar enable`
+Filters accounts that join without a custom profile avatar.
+
+- **Usage:** `,antiraid defaultavatar enable --do <kick|ban>`
+- **Aliases:** `,antiraid defaultavatar on`
+- **Example:** `,antiraid defaultavatar enable --do kick`
+
+<ParamField path="--do" type="string" required>
+  Action to take: `kick` or `ban`.
+</ParamField>
+
+### `antiraid defaultavatar disable`
+Disables default avatar filtering.
+
+- **Usage:** `,antiraid defaultavatar disable` (Alias: `,antiraid defaultavatar off`)
+
+---
+
+## Whitelisting
+
+### `antiraid whitelist`
+Exempts a member from all anti-raid automated actions.
+
+- **Usage:** `,antiraid whitelist <member>` (Alias: `,antiraid wl`)
+- **Example:** `,antiraid whitelist @voby`
+
+### `antiraid unwhitelist`
+Removes a member from the anti-raid exemption list.
+
+- **Usage:** `,antiraid unwhitelist <member>` (Alias: `,antiraid unwl`)
+
+### `antiraid whitelist view`
+Displays a list of all currently whitelisted users.
+
+- **Usage:** `,antiraid whitelist view`

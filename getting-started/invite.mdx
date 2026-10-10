@@ -1,0 +1,62 @@
+---
+title: "Invite Hollow"
+description: "How to add Hollow to your Discord server with optimal permissions and OAuth2 scopes."
+---
+
+import { Steps, Step, Note, Tip, Warning } from '@mintlify/components'
+
+Adding Hollow to your server takes less than a minute. This guide walks through the required authorization scopes, recommended permissions, and post-invite checklist.
+
+## Quick Invite Links
+
+<Tip>
+  We recommend using the **Administrator** invite link for convenience so Hollow never runs into missing permission errors when creating channels, managing roles, or executing purge filters.
+</Tip>
+
+- **Full Permission Invite (Recommended):**  
+  [Add Hollow with Administrator](https://discord.com/oauth2/authorize?client_id=1447869784937988201&permissions=8&scope=bot%20applications.commands)
+- **Standard Invite (Minimal permissions granted per role):**  
+  [Add Hollow (Custom Permissions)](https://discord.com/oauth2/authorize?client_id=1447869784937988201&permissions=1099511627775&scope=bot%20applications.commands)
+
+## Step-by-Step Walkthrough
+
+<Steps>
+  <Step title="Open the Authorization Link">
+    Click either of the invite links above. If you are not already logged in to Discord in your browser, log in with an account that has **Manage Server** or **Administrator** rights on your target guild.
+  </Step>
+
+  <Step title="Select Your Guild">
+    In the dropdown menu labeled **Add to Server**, choose the community where you want to install Hollow, then click **Continue**.
+  </Step>
+
+  <Step title="Review Permissions & Authorize">
+    Review the requested permission flags. Hollow requests permissions necessary for moderation, anti-raid monitoring, dynamic voice channels, and utility lookups. Click **Authorize** and complete the quick Discord captcha verification.
+  </Step>
+
+  <Step title="Adjust Role Hierarchy in Server Settings">
+    In your Discord server:
+    1. Go to **Server Settings** -> **Roles**.
+    2. Drag the **Hollow** role up so that it sits **above** normal member, moderator, and vanity roles.
+    3. Save your changes.
+  </Step>
+</Steps>
+
+<Warning>
+  Discord enforces a strict rule: **Bots cannot modify, assign, kick, or ban members whose highest role is equal to or higher than the bot's highest role.** If Hollow's role is at the bottom of your role list, commands like `,ban`, `,kick`, and `,autorole` will fail.
+</Warning>
+
+## Required OAuth2 Scopes
+
+When inviting Hollow, the following OAuth2 scopes are requested:
+
+| Scope | Purpose |
+| :--- | :--- |
+| `bot` | Allows Hollow to join your guild, read events, and send messages. |
+| `applications.commands` | Registers Hollow's slash commands in your server's chat box. |
+
+## Next Steps
+
+Once Hollow has joined your guild and its role is positioned high in your role list:
+
+1. Check out the [Quickstart Guide](/getting-started/quickstart) to configure your server prefix and test your first command.
+2. Read the [Permissions Guide](/getting-started/permissions) to explore Hollow's custom `fakeperms` system.

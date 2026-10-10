@@ -1,0 +1,99 @@
+---
+title: "AI Chat & Generation"
+description: "Engage with conversational AI, configure autorespond chat channels, generate AI artwork, and synthesize text-to-speech."
+---
+
+import { Note, Tip, Warning, Accordion, AccordionGroup } from '@mintlify/components'
+
+Hollow integrates state-of-the-art machine learning models directly into Discord. From on-demand query answering to dedicated automatic conversational channels, image synthesis, and multi-voice speech rendering, Hollow turns your server into an interactive AI playground.
+
+---
+
+## 1. Conversational AI (`chatgpt`)
+
+Ask questions, brainstorm ideas, write code, or roleplay directly in chat:
+
+```text
+,chatgpt explain quantum computing like I'm five
+```
+Aliases: `,ask`, `,ai`, `,gpt`
+
+- **Context Window:** Keeps conversation history per channel/user so you can ask natural follow-up questions.
+- **Message Splitting:** Long responses exceeding Discord's 2,000-character ceiling are intelligently split across sequential messages.
+
+---
+
+## 2. Dedicated Chatbot Channels
+
+Server admins can designate specific channels where Hollow acts as an autonomous conversational partner:
+
+<AccordionGroup>
+  <Accordion title="Enabling the Chatbot Module">
+    Enable the chatbot engine in your guild:
+    ```text
+    ,chatbot enable
+    ```
+    Once enabled, members can talk to Hollow anywhere by **mentioning `@Hollow`** or by **replying to any of Hollow's messages**.
+  </Accordion>
+
+  <Accordion title="Setting an Autorespond Channel">
+    Designate a channel where Hollow answers **every single message** without needing a mention:
+    ```text
+    ,chatbot channel set #ai-lounge
+    ```
+  </Accordion>
+
+  <Accordion title="Checking Status & Resetting">
+    Inspect configured chatbot channels or reset them:
+    ```text
+    # View active chatbot settings
+    ,chatbot status
+
+    # List configured channels
+    ,chatbot channel
+
+    # Remove a channel
+    ,chatbot channel reset #ai-lounge
+
+    # Disable the chatbot server-wide
+    ,chatbot disable
+    ```
+  </Accordion>
+</AccordionGroup>
+
+---
+
+## 3. AI Image Generation (`imagine`)
+
+Generate original digital art and photography from a text prompt:
+
+```text
+,imagine a futuristic neon city in the rain, cinematic lighting, 8k
+```
+Aliases: `,draw`, `,dream`, `,aiimage`
+
+- **Engine:** Generates high-resolution images returned as direct Discord attachments with prompt embeds.
+- **Cooldown:** 30 seconds per user to prevent GPU exhaustion.
+
+---
+
+## 4. Text-to-Speech (`tts`)
+
+Convert any text message into high-quality audio files uploaded right to your channel:
+
+```text
+# Default voice speech
+,tts Welcome everyone to tonight's community game night!
+
+# Select a custom voice
+,tts voice echo Attention all staff members, please check the announcements channel.
+```
+
+### Available Voices
+To view the complete list of supported neural voice profiles:
+```text
+,tts voices
+```
+
+Supported voices include:
+`alloy`, `echo`, `fable`, `onyx`, `nova`, `shimmer`, `breeze`, `cove`, `jupiter`, `orbit`, `zephyr` *(Default: `alloy`)*.

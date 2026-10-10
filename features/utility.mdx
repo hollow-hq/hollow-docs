@@ -1,0 +1,81 @@
+---
+title: "Utility & Information"
+description: "Server lookups, user avatars, banners, booster tracking, emoji stealing, message sniping, and embed creation."
+---
+
+import { Note, Tip, Card, CardGroup } from '@mintlify/components'
+
+Hollow provides powerful utility commands to inspect users, extract profile assets, monitor boost counts, and rescue deleted or edited messages.
+
+---
+
+## 1. Information & Asset Lookups
+
+<CardGroup cols={2}>
+  <Card title="User & Server Info" icon="circle-info">
+    Inspect detailed member flags, badges, permissions, server boost levels, channel breakdowns, and roles.
+    ```text
+    ,userinfo @member
+    ,serverinfo
+    ,roleinfo @Role
+    ,botinfo
+    ```
+  </Card>
+
+  <Card title="Avatars & Banners" icon="image">
+    Extract high-resolution global or guild-specific profile assets:
+    ```text
+    ,avatar @member
+    ,serveravatar @member
+    ,banner @member
+    ,serverbanner
+    ```
+  </Card>
+
+  <Card title="Invite & Dominant Color" icon="palette">
+    Extract invite code metadata or grab dominant color hex codes from avatars:
+    ```text
+    ,inviteinfo discord.gg/vpx72Zue2R
+    ,hex @member
+    ```
+  </Card>
+
+  <Card title="Lost Booster Tracker" icon="rocket">
+    Check how many boosts your server has lost over time:
+    ```text
+    ,boosters
+    ,boosters lost
+    ```
+  </Card>
+</CardGroup>
+
+---
+
+## 2. Expression Tools (Emoji Management)
+
+Quickly expand your server's emoji collection without downloading and re-uploading files:
+
+- `,emoji steal <emoji or URL> [name]` — Clones a custom emoji into your server. Requires `Manage Expressions`.
+- `,emoji remove <emoji>` — Deletes a custom emoji from your server.
+- `,emoji <emoji>` — Enlarges an emoji and displays its internal ID and CDN URL.
+
+---
+
+## 3. Message Sniping
+
+Recover messages that were recently deleted or edited, as well as removed reactions:
+
+- `,snipe [index]` (Alias: `,s`) — Views the most recently deleted messages in the channel (supports index 1-10).
+- `,editsnipe [index]` (Alias: `,es`) — Views previous versions of edited messages.
+- `,reactionsnipe` — Shows the most recently removed emoji reactions.
+
+---
+
+## 4. General Utilities
+
+- `,afk [reason]` — Sets your AFK status. When anyone mentions you, Hollow informs them you're away and how long you've been gone. When you speak again, Hollow welcomes you back.
+- `,urban <word>` — Looks up definitions on Urban Dictionary.
+- `,quickpoll` (Alias: `,qp`) — Quickly appends thumbs-up reactions to your message for informal polls.
+- `,pin <message link>` / `,unpin <message link>` — Pin and unpin messages without needing native desktop context menus.
+- `,suggest <text>` — Sends a community feature suggestion.
+- `,donate` — Displays contribution links to help cover Hollow's hosting costs.

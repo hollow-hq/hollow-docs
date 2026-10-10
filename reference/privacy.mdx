@@ -1,0 +1,45 @@
+---
+title: "Privacy Policy"
+description: "How Hollow handles, stores, and protects server and user data."
+---
+
+import { Note, Tip } from '@mintlify/components'
+
+*Last updated: October 2026*
+
+Your privacy is paramount. This Privacy Policy details what information **Hollow** collects, why it is needed to power features, how it is stored, and how you can request data deletion.
+
+---
+
+## 1. Information We Collect
+
+Hollow only collects data strictly necessary to provide bot functionality:
+
+- **Discord Identifiers:** User IDs, Guild IDs, Channel IDs, and Role IDs to persist configurations (e.g. prefix settings, autoroles, whitelists, fake permissions).
+- **Custom Settings & Content:** Welcome/leave message templates, autoresponder triggers, sticky messages, and custom command aliases.
+- **Social & Feature Data:**
+  - Linked Last.fm usernames (for music scrobble queries).
+  - Registered birthdays (month, day, year) for birthday announcements.
+  - User-created diary entries.
+- **Temporary Cache:** Recently deleted or edited messages in channels are cached in ephemeral memory for short periods to power the `,snipe` and `,editsnipe` utilities. They are not permanently stored on disk.
+
+Hollow **never** stores payment credentials, user passwords, private Discord messages, or IP addresses.
+
+---
+
+## 2. How Data is Used
+
+Data collected by Hollow is utilized exclusively for:
+- Executing requested user commands and automations.
+- Enforcing server-configured anti-raid defenses and moderation rules.
+- Maintaining continuity of settings across bot restarts and shard rebalances.
+
+We do **not** sell, rent, or monetize your data with third-party advertisers.
+
+---
+
+## 3. Data Retention & Deletion Rights
+
+- **Server Removal:** When Hollow is removed from a server, server-specific configuration rows can be purged upon request.
+- **User Data Deletion:** You have the right to request deletion of all personal data associated with your Discord user ID (such as diary entries, registered birthdays, and linked Last.fm profiles).
+- **Requesting Deletion:** Open a ticket in our [Support Server](https://discord.gg/vpx72Zue2R) stating your Discord user ID and request a complete data purge.

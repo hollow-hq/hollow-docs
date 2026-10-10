@@ -1,0 +1,108 @@
+---
+title: "Anti-Raid Protection"
+description: "Protect your Discord server with automated raid detection: mass join prevention, young account quarantine, and default avatar blocks."
+---
+
+import { Note, Tip, Warning, Card, CardGroup } from '@mintlify/components'
+
+Discord servers are frequently targeted by bot raids, token spammers, and coordinated malicious join waves. Hollow's **Anti-Raid Module** operates directly on member join events in real time to filter attackers before they can disrupt your community.
+
+## Protective Layers
+
+<CardGroup cols={3}>
+  <Card title="Mass Join Defense" icon="users-slash">
+    Detects abnormal influxes of users joining within a tight timeframe and automatically kicks or bans them.
+  </Card>
+  <Card title="New Account Quarantine" icon="baby">
+    Blocks brand-new throwaway Discord accounts under a configurable age threshold (in days).
+  </Card>
+  <Card title="Default Avatar Filter" icon="user-secret">
+    Prevents unverified users with default Discord avatars from joining during attacks.
+  </Card>
+</CardGroup>
+
+---
+
+## 1. Mass Join Protection
+
+Mass join raids occur when an attacker floods a guild with hundreds of automated bot accounts over a span of seconds.
+
+### How it Works
+Hollow monitors join frequency using a 10-second rolling sliding window. If the number of joins exceeds your configured threshold, Hollow immediately punishes every account involved in the raid.
+
+### Configuration
+```text
+# Enable mass join detection (punishment: kick or ban, threshold: join count)
+,antiraid massjoin enable --do ban --threshold 5
+
+# Disable mass join detection
+,antiraid massjoin disable
+```
+
+<Note>
+  `--do` accepts either `kick` or `ban`. `--threshold` must be a positive integer representing how many joins within 10 seconds trigger the punishment.
+</Note>
+
+---
+
+## 2. New Accounts (Alt Account Filter)
+
+Raiders frequently register fresh Discord accounts to bypass user bans or troll chats.
+
+### How it Works
+When a member joins, Hollow calculates the age of their Discord account. If the account age is lower than your required threshold, Hollow immediately executes the designated punishment.
+
+### Configuration
+```text
+# Block accounts younger than 7 days
+,antiraid newaccounts on --do kick --threshold 7
+
+# Whitelist a specific friend or user whose account is young
+,antiraid newaccounts whitelist @Friend
+
+# Disable new account filtering
+,antiraid newaccounts disable
+```
+
+---
+
+## 3. Default Avatar Protection
+
+Most automated spam bots and disposable tokens do not have custom profile pictures uploaded.
+
+### How it Works
+On member join, Hollow inspects whether the account has a custom avatar uploaded. If the user is using one of Discord's default colored avatars, Hollow triggers the punishment.
+
+### Configuration
+```text
+# Enable default avatar protection with automatic kick
+,antiraid defaultavatar enable --do kick
+
+# Disable default avatar protection
+,antiraid defaultavatar disable
+```
+
+---
+
+## Whitelisting & Status Inspection
+
+### Inspecting Settings
+View the active status, punishment mode, and thresholds of all anti-raid modules in a visual embed:
+
+```text
+,antiraid settings
+```
+
+### Whitelisting Users
+To exempt specific individuals (such as alt accounts of trusted members or bot developers) from anti-raid actions:
+
+```text
+# Whitelist a member from all antiraid actions
+,antiraid whitelist @member
+
+# Remove a member from the whitelist
+,antiraid unwhitelist @member
+
+# View all whitelisted members
+,antiraid whitelist view
+```

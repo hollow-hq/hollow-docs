@@ -1,0 +1,47 @@
+---
+title: "Fun & Social Commands"
+description: "Reference for birthday tracking, private diary entries, meters, matchmaker, 8ball, and roasts."
+---
+
+import { ParamField, Note, Tip } from '@mintlify/components'
+
+---
+
+## Birthday Commands
+
+- `,birthday set <date>` — Registers your birthday (e.g. `04/15` or `April 15 2004`).
+- `,birthday view [@member]` — Shows registered birthday date and age.
+- `,birthday reset` — Clears your birthday from the database.
+- `,birthday lock` / `,birthday unlock` — Prevents or allows accidental edits to your birthday.
+- `,birthday list` — Displays all upcoming member birthdays in the server.
+- `,birthday next` — Shows the very next upcoming server birthday.
+- `,birthday channel [#channel]` — Sets the birthday announcement channel. Requires `Manage Guild`.
+- `,birthday role [@role]` — Sets the temporary celebratory birthday role. Requires `Manage Guild`.
+- `,birthday celebrate add <@role>` — Adds a role to mention on birthday announcements. Requires `Manage Guild`.
+- `,birthday celebrate remove <@role>` — Removes a celebration mention role. Requires `Manage Guild`.
+- `,birthday disable` — Disables the birthday scheduler. Requires `Manage Guild`.
+
+---
+
+## Diary Commands
+
+- `,diary add <entry>` — Adds a personal diary entry.
+- `,diary view <entry_id>` — Reads a specific entry.
+- `,diary privacy <entry_id>` — Toggles an entry between private (only you can view) and public.
+- `,diary remove <entry_id>` — Deletes an entry.
+- `,diary` — Lists your diary entries.
+
+---
+
+## Meters & Social Games
+
+- `,howgay [@member]` — Calculates gay percentage meter.
+- `,howlesbian [@member]` — Calculates lesbian percentage meter.
+- `,howautism [@member]` — Calculates autism percentage meter.
+- `,howsimp [@member]` — Rates how much of a simp the user is.
+- `,bitches [@member]` — Displays member's bitches counter.
+- `,ship <@member1> [@member2]` — Matchmaking compatibility test between two users.
+- `,8ball <question>` — Returns an answer from the magic eight ball.
+- `,roast [@member]` — Generates a humorous roast.
+- `,base64 encode <text>` — Encodes text to Base64.
+- `,base64 decode <text>` — Decodes Base64 to plain text.

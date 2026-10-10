@@ -1,0 +1,90 @@
+---
+title: "AI & Generation Commands"
+description: "Reference for chatgpt conversations, autorespond chatbot channels, AI image generation, and text-to-speech."
+---
+
+import { ParamField, Note, Tip } from '@mintlify/components'
+
+---
+
+## Conversational AI
+
+### `chatgpt`
+Sends a prompt directly to Hollow's conversational AI model and returns a contextual response.
+
+- **Usage:** `,chatgpt <prompt>`
+- **Aliases:** `,ask`, `,ai`, `,gpt`
+- **Example:** `,chatgpt What is the difference between TCP and UDP?`
+- **Cooldown:** 5 seconds per user
+
+<ParamField path="prompt" type="string" required>
+  The question or topic to discuss with the AI.
+</ParamField>
+
+---
+
+## Chatbot Channels
+
+### `chatbot enable`
+Enables the AI chatbot server-wide. Once enabled, users can mention `@Hollow` or reply to any of Hollow's messages to chat.
+
+- **Usage:** `,chatbot enable` (Alias: `,chatbot on`)
+- **Permissions:** `Manage Guild`
+
+### `chatbot disable`
+Disables the AI chatbot.
+
+- **Usage:** `,chatbot disable` (Alias: `,chatbot off`)
+- **Permissions:** `Manage Guild`
+
+### `chatbot status`
+Displays the active status and autorespond channel list.
+
+- **Usage:** `,chatbot status`
+
+### `chatbot channel set`
+Designates a channel where the chatbot answers every incoming message without requiring a mention.
+
+- **Usage:** `,chatbot channel set <#channel>`
+- **Permissions:** `Manage Guild`
+
+### `chatbot channel reset`
+Removes one or all autorespond chatbot channels.
+
+- **Usage:** `,chatbot channel reset [#channel]`
+- **Permissions:** `Manage Guild`
+
+---
+
+## Image Generation
+
+### `imagine`
+Generates an original image from a descriptive prompt.
+
+- **Usage:** `,imagine <prompt>`
+- **Aliases:** `,draw`, `,dream`, `,aiimage`
+- **Example:** `,imagine a serene cyberpunk garden at night, digital art`
+- **Cooldown:** 30 seconds per user
+
+---
+
+## Text-to-Speech (`tts`)
+
+### `tts`
+Converts text to an audio file using the default neural voice (`alloy`).
+
+- **Usage:** `,tts <text>`
+- **Example:** `,tts Hello and welcome to our voice channel!`
+- **Cooldown:** 15 seconds per user
+
+### `tts voice`
+Synthesizes speech using a specific voice profile.
+
+- **Usage:** `,tts voice <voice_name> <text>`
+- **Example:** `,tts voice echo Alert: Event starting in 10 minutes.`
+
+### `tts voices`
+Lists all supported voice names.
+
+- **Usage:** `,tts voices`
+- **Supported:** `alloy`, `echo`, `fable`, `onyx`, `nova`, `shimmer`, `breeze`, `cove`, `jupiter`, `orbit`, `zephyr`

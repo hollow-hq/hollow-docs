@@ -1,0 +1,50 @@
+---
+title: "VoiceMaster Setup"
+description: "Deploy and optimize dynamic temporary voice channels with button interfaces for your server."
+---
+
+import { Steps, Step, Note, Tip, Warning } from '@mintlify/components'
+
+Voice channels that sit empty clutter your server sidebar. VoiceMaster replaces static channels with a single, elegant "Join to Create" generator that spawns private rooms on demand.
+
+---
+
+## Deployment Steps
+
+<Steps>
+  <Step title="Execute Setup">
+    Run the setup command in any channel:
+    ```text
+    ,voicemaster setup
+    ```
+    Hollow will create:
+    - A voice category named `voice`
+    - A text channel named `interface` containing the interactive controller embed and buttons
+    - A voice channel named `Join to Create`
+  </Step>
+
+  <Step title="Verify Channel Permissions">
+    Make sure Hollow has the following permissions in the created category:
+    - `Manage Channels`
+    - `Move Members`
+    - `Connect`
+    - `View Channel`
+    
+    Ensure `@everyone` has permission to **View Channel** and **Connect** on the `Join to Create` channel.
+  </Step>
+
+  <Step title="Test the System">
+    1. Join the **Join to Create** voice channel in Discord.
+    2. Hollow will instantly create a new channel named `<YourUsername>'s Channel` and move you into it.
+    3. Open the `#interface` channel. You can click the 🔒 **Lock**, 👁️ **Hide**, or 👥 **Limit** buttons to manage your channel.
+    4. Disconnect from the voice channel. Within seconds of the room becoming empty, Hollow will delete it automatically.
+  </Step>
+</Steps>
+
+---
+
+## Best Practices
+
+- **Channel Position:** You can freely rename or drag the `voice` category anywhere in your Discord channel list. Hollow tracks category and channel IDs in its database.
+- **Interface Access:** Keep `#interface` viewable by all server members, but set `Send Messages` to **False** for `@everyone`. Members only need permission to interact with buttons, not chat in the interface channel.
+- **Custom Bitrate:** If your server has Nitro Boost Level 1, 2, or 3, members can increase their voice bitrate up to 128kbps, 256kbps, or 384kbps using `,voicemaster bitrate`.

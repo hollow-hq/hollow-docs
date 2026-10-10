@@ -1,0 +1,51 @@
+---
+title: "Command Overview"
+description: "How to use, invoke, and navigate Hollow's complete command reference."
+---
+
+import { Card, CardGroup, Tip, Note } from '@mintlify/components'
+
+Hollow features dozens of commands engineered for modularity, speed, and safety. Every command can be executed using either **slash commands (`/`)** or **text prefix commands (default `,`)**.
+
+## Command Categories
+
+<CardGroup cols={2}>
+  <Card title="Moderation Commands" icon="gavel" href="/commands/moderation">
+    Ban, kick, nuke, mute/unmute, image mute, reaction mute, purge filters, lockdown, and role manipulation.
+  </Card>
+  <Card title="Anti-Raid Commands" icon="shield-halved" href="/commands/antiraid">
+    Configure mass join limits, new account age restrictions, default avatar punishments, and user whitelists.
+  </Card>
+  <Card title="VoiceMaster Commands" icon="waveform-lines" href="/commands/voicemaster">
+    Setup join-to-create hubs, lock, unlock, hide, unhide, rename, bitrate, limit, drag, kick, and transfer temporary channels.
+  </Card>
+  <Card title="Server Management Commands" icon="sliders" href="/commands/server">
+    Prefixes, autoroles, sticky messages, boost announcements, leaves, autoresponders, booster vanity roles, and fakeperms.
+  </Card>
+  <Card title="Music Commands" icon="compact-disc" href="/commands/music">
+    Play, skip, stop, volume control, and DSP filter presets (8D, nightcore, daycore, earrape).
+  </Card>
+  <Card title="AI & Generation Commands" icon="sparkles" href="/commands/ai">
+    Chatgpt interactive conversations, dedicated autorespond chatbot channels, AI image generation, and TTS voice synthesis.
+  </Card>
+  <Card title="Last.fm Commands" icon="headphones" href="/commands/lastfm">
+    Now playing cards, scrobble statistics, user profile lookups, top artists charts, and recommendations.
+  </Card>
+  <Card title="Fun & Social Commands" icon="gamepad" href="/commands/fun">
+    Birthday registrations and announcements, private diary entries, meters, 8ball, roasts, and base64 converters.
+  </Card>
+  <Card title="Information Commands" icon="circle-info" href="/commands/information">
+    Bot status, uptime, server info, user info, avatar/banner downloads, invite lookups, and lost booster logs.
+  </Card>
+  <Card title="Utility Commands" icon="toolbox" href="/commands/utility">
+    AFK status, message snipe, edit snipe, reaction snipe, pin/unpin, embed creation, and Urban Dictionary.
+  </Card>
+</CardGroup>
+
+## Syntax Conventions
+
+In our command reference pages, command signatures use standard notation:
+- `<argument>` — Required parameter.
+- `[argument]` — Optional parameter.
+- `[member | user]` — Parameter accepts a user mention (`@voby`), user tag, or 18-digit Discord snowflake ID.
+- `[amount = 15]` — Optional parameter with a default value if omitted.

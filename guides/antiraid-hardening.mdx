@@ -1,0 +1,97 @@
+---
+title: "Anti-Raid Hardening"
+description: "How to configure Hollow's anti-raid defenses for high-risk and public Discord communities."
+---
+
+import { Steps, Step, Note, Tip, Warning, Accordion, AccordionGroup } from '@mintlify/components'
+
+Public Discord communities, gaming guilds, and large creators are high-value targets for coordinated raiding groups. This guide explains how to tune Hollow's anti-raid modules to strike the ideal balance between security and newcomer friction.
+
+---
+
+## Recommended Anti-Raid Tiers
+
+Depending on the size and exposure of your server, choose a security profile:
+
+| Profile | Mass Join Threshold | Account Age Filter | Default Avatar | Recommended For |
+| :--- | :--- | :--- | :--- | :--- |
+| **Standard** | 8 joins / 10s (`kick`) | 1 day (`kick`) | Disabled | Private / Small Community |
+| **Hardened** | 5 joins / 10s (`ban`) | 3 days (`kick`) | Enabled (`kick`) | Growing / Public Guild |
+| **Lockdown** | 3 joins / 10s (`ban`) | 7 days (`ban`) | Enabled (`ban`) | Under Active Attack |
+
+---
+
+## Hardened Configuration Walkthrough
+
+<Steps>
+  <Step title="Configure Mass Join Defense">
+    Set mass join detection to ban attackers when 5 or more accounts flood the server within 10 seconds:
+    ```text
+    ,antiraid massjoin enable --do ban --threshold 5
+    ```
+  </Step>
+
+  <Step title="Enable New Account Quarantine">
+    Filter accounts younger than 3 days:
+    ```text
+    ,antiraid newaccounts on --do kick --threshold 3
+    ```
+    *If a legitimate friend joins on an alt account, staff can easily whitelist them:*
+    ```text
+    ,antiraid newaccounts whitelist @Friend
+    ```
+  </Step>
+
+  <Step title="Enable Default Avatar Filter">
+    Reject accounts that have not uploaded a profile picture:
+    ```text
+    ,antiraid defaultavatar enable --do kick
+    ```
+  </Step>
+
+  <Step title="Configure Lockdown Role and Channel Exclusions">
+    In the event you need to freeze all chat channels simultaneously:
+    1. Set the role to be locked:
+       ```text
+       ,lockdown role @Member
+       ```
+    2. Add staff channels and announcement channels to the exclusion list:
+       ```text
+       ,lockdown ignore #staff-chat
+       ,lockdown ignore #announcements
+       ```
+    3. Verify your ignored list:
+       ```text
+       ,lockdown ignored
+       ```
+  </Step>
+</Steps>
+
+---
+
+## What to Do During an Active Raid
+
+If your community is actively being spammed:
+
+1. **Trigger Emergency Lockdown:**
+   ```text
+   ,lockdown all
+   ```
+   *This immediately strips send message permissions across every channel in your server except ignored staff channels.*
+
+2. **Bulk-Purge Raider Messages:**
+   ```text
+   ,purge links 100
+   ,purge bots 100
+   ,purge mentions 50
+   ```
+
+3. **Check Raid Stats:**
+   ```text
+   ,antiraid settings
+   ```
+
+4. **Unlock Once Safe:**
+   ```text
+   ,unlock all
+   ```

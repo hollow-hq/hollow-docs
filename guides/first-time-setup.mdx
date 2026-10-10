@@ -1,0 +1,82 @@
+---
+title: "First-Time Server Setup"
+description: "A complete end-to-end walkthrough for configuring Hollow from scratch on a new Discord server."
+---
+
+import { Steps, Step, Note, Tip, Warning } from '@mintlify/components'
+
+Setting up a new Discord server can be overwhelming. Follow this step-by-step checklist to configure moderation roles, automated join greetings, verification roles, and raid defenses in under 10 minutes.
+
+---
+
+<Steps>
+  <Step title="Establish Role Hierarchy">
+    Before running any commands, open Discord's **Server Settings -> Roles**:
+    1. Drag the **Hollow** integration role above your `@Moderator` and member roles.
+    2. Ensure Hollow possesses the **Administrator** permission (or at least `Manage Roles`, `Manage Channels`, and `Moderate Members`).
+  </Step>
+
+  <Step title="Configure Your Guild Prefix & Aliases">
+    Pick a prefix that works for your staff team:
+    ```text
+    ,prefix add !
+    ```
+    Set up convenient shortcuts for moderation:
+    ```text
+    !alias add p purge
+    !alias add m mute
+    !alias add um unmute
+    ```
+  </Step>
+
+  <Step title="Configure Staff Permissions with Fakeperms">
+    Instead of giving native Discord administrative rights to your moderation staff, assign them fake permissions inside Hollow:
+    ```text
+    !fakeperms add @Moderator moderate_members
+    !fakeperms add @Moderator manage_messages
+    !fakeperms add @Moderator kick_members
+    !fakeperms add @Moderator ban_members
+    ```
+    Verify the configuration:
+    ```text
+    !fakeperms list @Moderator
+    ```
+  </Step>
+
+  <Step title="Set Up Member Onboarding (Autorole & Welcome)">
+    Automatically assign your community role when new members arrive:
+    ```text
+    !autorole add @Member
+    ```
+    Create a clean welcome message in your `#welcome` channel:
+    ```text
+    !welcome add #welcome {embed}$v{title: Welcome to {guild.name}!}$v{description: Hey {user.mention}, thank you for joining us! Please check our rules in <#123456789012345678> before chatting.}$v{thumbnail: {user.avatar}}$v{color: #7d7ead}$v{footer: Member #{guild.count.format}}
+    ```
+    Test how it renders:
+    ```text
+    !welcome view #welcome
+    ```
+  </Step>
+
+  <Step title="Configure Basic Anti-Raid Protection">
+    Protect your server from immediate join raids and alt account botnets:
+    ```text
+    # Stop mass joins (kick if more than 5 users join in 10s)
+    !antiraid massjoin enable --do kick --threshold 5
+
+    # Filter brand-new accounts younger than 3 days
+    !antiraid newaccounts on --do kick --threshold 3
+    ```
+  </Step>
+
+  <Step title="Set Up Sticky Channel Rules">
+    Keep your rules or verification guidelines visible at the bottom of your busy chat channels:
+    ```text
+    !stickymessage add #general Remember to follow server rules and keep discussion respectful!
+    ```
+  </Step>
+</Steps>
+
+## You're Ready!
+
+Your server is now protected by Hollow's automated security defenses, equipped with an onboarding flow, and configured with safe moderation permissions.

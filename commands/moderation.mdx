@@ -1,0 +1,160 @@
+---
+title: "Moderation Commands"
+description: "Detailed parameter reference and permissions for all Hollow moderation commands."
+---
+
+import { ParamField, Note, Warning, Accordion, AccordionGroup } from '@mintlify/components'
+
+All commands listed below can be invoked using the `,` prefix or as slash commands (`/`).
+
+---
+
+## Member Sanctions
+
+### `ban`
+Bans a user from the guild with an interactive confirmation menu.
+
+- **Usage:** `,ban <user> [reason]`
+- **User Permissions:** `Ban Members` (or `fakeperms` `ban_members`)
+- **Bot Permissions:** `Ban Members`
+- **Example:** `,ban @spammer Raiding general chat`
+
+<ParamField path="user" type="Member / User" required>
+  The member or Discord ID to ban.
+</ParamField>
+<ParamField path="reason" type="string" default="No reason provided.">
+  Reason for the ban (logged in audit logs).
+</ParamField>
+
+---
+
+### `unban`
+Unbans a previously banned user by their ID.
+
+- **Usage:** `,unban <user_id> [reason]`
+- **User Permissions:** `Moderate Members` / `Ban Members`
+- **Bot Permissions:** `Ban Members`
+- **Example:** `,unban 1470775670262202590 Apology accepted`
+
+---
+
+### `kick`
+Kicks a member from the guild with an interactive confirmation prompt.
+
+- **Usage:** `,kick <member> [reason]`
+- **User Permissions:** `Kick Members`
+- **Bot Permissions:** `Kick Members`
+- **Example:** `,kick @voby spamming`
+
+---
+
+### `mute`
+Places a member in a Discord timeout for a specified duration.
+
+- **Usage:** `,mute <member> [duration] [reason]`
+- **User Permissions:** `Moderate Members`
+- **Bot Permissions:** `Moderate Members`
+- **Example:** `,mute @member 10m Inappropriate language`
+
+---
+
+### `unmute`
+Removes an active timeout from a member.
+
+- **Usage:** `,unmute <member>`
+- **User Permissions:** `Moderate Members`
+- **Bot Permissions:** `Moderate Members`
+- **Example:** `,unmute @member`
+
+---
+
+### `imute` / `iunmute`
+Revokes or restores a member's permission to attach files and embed links.
+
+- **Usage:** `,imute <member>` / `,iunmute <member>`
+- **User Permissions:** `Moderate Members`
+- **Bot Permissions:** `Manage Channels`
+
+---
+
+### `reactionmute` / `reactionunmute`
+Revokes or restores a member's permission to add emoji reactions.
+
+- **Usage:** `,reactionmute <member>` / `,reactionunmute <member>`
+- **User Permissions:** `Moderate Members`
+- **Bot Permissions:** `Manage Channels`
+
+---
+
+### `forcenickname`
+Enforces a nickname on a member. If the member attempts to change it, Hollow automatically reverts it back.
+
+- **Usage:** `,forcenickname <member> [nickname]`
+- **User Permissions:** `Manage Nicknames`
+- **Bot Permissions:** `Manage Nicknames`
+- **Example:** `,forcenickname @member ModeratedName` (Run without a nickname to remove enforcement).
+
+---
+
+### `stripstaff`
+Emergency staff revocation command that strips all administrative and moderation roles from a target member.
+
+- **Usage:** `,stripstaff <member>`
+- **User Permissions:** `Administrator`
+- **Bot Permissions:** `Manage Roles`
+
+---
+
+## Channel Management
+
+### `lockdown` / `unlock`
+Locks or unlocks text channels to prevent messages from `@everyone` (or a designated lock role).
+
+- `,lockdown [channel] [reason]` — Locks a specific channel (defaults to current).
+- `,lockdown all` — Locks every channel in the server except ignored channels.
+- `,lockdown ignore <channel>` — Adds or removes a channel from the lockdown exclusion list.
+- `,lockdown ignored` — Lists all excluded channels.
+- `,lockdown role <role>` — Sets the target role modified during lockdowns (default: `@everyone`).
+- `,unlock [channel] [reason]` — Unlocks a channel.
+- `,unlock all` — Unlocks all channels in the server.
+
+### `nuke`
+Duplicates the current channel, copies permissions and positions, and deletes the original channel to completely purge chat history.
+
+- **Usage:** `,nuke [channel]`
+- **User Permissions:** `Manage Guild`
+- **Bot Permissions:** `Manage Channels`
+
+### `hide` / `reveal`
+Hides or reveals a channel by updating read permissions for `@everyone`.
+
+- **Usage:** `,hide [channel]` / `,reveal [channel]`
+- **User Permissions:** `Manage Channels`
+
+---
+
+## Purge Commands
+
+Bulk-delete messages matching specific criteria (default amount: 15 messages):
+
+- `,purge [amount]` — Deletes recent messages.
+- `,purge user <@member> [amount]` — Deletes messages sent by a specific user.
+- `,purge bots [amount]` — Deletes messages sent by bots.
+- `,purge links [amount]` — Deletes messages containing URLs.
+- `,purge attachments [amount]` — Deletes messages containing images or files.
+- `,purge humans [amount]` — Deletes messages from non-bot users.
+- `,purge stickers [amount]` — Deletes messages containing Discord stickers.
+- `,purge mentions [amount]` — Deletes messages containing user or role mentions.
+
+---
+
+## Role Commands
+
+- `,role <member> <role>` — Toggles a role on a user.
+- `,role create <name>` — Creates a new server role.
+- `,role delete <role>` — Deletes an existing role.
+- `,role all <role>` — Mass-assigns a role to every member in the server.
+- `,role humans <role>` — Mass-assigns a role to human members only.
+- `,role color <hex> <role>` — Updates a role's color (e.g. `,role color #FF0000 @Staff`).
+- `,role hoist <role>` — Toggles whether a role is hoisted separately in the member list.
+- `,role mentionable <role>` — Toggles whether a role can be mentioned by everyone.

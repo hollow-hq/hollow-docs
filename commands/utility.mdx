@@ -1,0 +1,102 @@
+---
+title: "Utility Commands"
+description: "Reference for AFK status, message sniping, emoji cloning, custom embeds, and Urban Dictionary lookups."
+---
+
+import { ParamField, Note, Tip } from '@mintlify/components'
+
+---
+
+## Chat & Message Utilities
+
+### `afk`
+Sets an AFK status message. Whenever another member mentions you, Hollow replies with your reason and elapsed time. When you speak again, your AFK status is cleared.
+
+- **Usage:** `,afk [reason]`
+- **Example:** `,afk stepping out for dinner`
+
+### `snipe`
+Shows the most recently deleted message in the channel.
+
+- **Usage:** `,snipe [index]` (Alias: `,s`)
+- **Example:** `,snipe 2` *(views second most recently deleted message)*
+
+### `editsnipe`
+Shows the previous unedited content of a message that was modified.
+
+- **Usage:** `,editsnipe [index]` (Alias: `,es`)
+
+### `reactionsnipe`
+Displays the most recently removed emoji reactions and who removed them.
+
+- **Usage:** `,reactionsnipe`
+
+### `pin` / `unpin`
+Pins or unpins a message without requiring desktop context menus.
+
+- **Usage:** `,pin <message_link>` / `,unpin <message_link>`
+- **Permissions:** `Manage Messages`
+
+---
+
+## Expression & Emoji Tools
+
+### `emoji steal`
+Clones a custom emoji from another server into your guild.
+
+- **Usage:** `,emoji steal <emoji or URL> [name]`
+- **Permissions:** `Manage Expressions`
+- **Example:** `,emoji steal :hype: custom_hype`
+
+### `emoji remove`
+Deletes a custom emoji from your guild.
+
+- **Usage:** `,emoji remove <emoji>`
+- **Permissions:** `Manage Expressions`
+
+### `emoji`
+Enlarges an emoji and displays its CDN URL and internal snowflake ID.
+
+- **Usage:** `,emoji <emoji>`
+
+---
+
+## Embed Tools
+
+### `createembed`
+Parses Bleed-style embed scripting syntax and sends the rendered embed into the channel.
+
+- **Usage:** `,createembed <script>`
+- **Aliases:** `,ce`, `,script`
+- **Permissions:** `Manage Messages`
+- **Example:** `,createembed {embed}$v{title: Hello}$v{description: World}`
+
+### `embedcode`
+Reverse-engineers an existing Discord embed and outputs its raw `{embed}$v...` code so you can copy or adapt it.
+
+- **Usage:** `,embedcode <message_link>`
+
+---
+
+## Community Utilities
+
+### `urban`
+Looks up slang definitions and examples on Urban Dictionary.
+
+- **Usage:** `,urban <query>`
+- **Example:** `,urban touch grass`
+
+### `quickpoll`
+Adds quick thumbs-up / thumbs-down reactions to your message for rapid community voting.
+
+- **Usage:** `,quickpoll` (Alias: `,qp`)
+
+### `suggest`
+Submits a suggestion to the server's review queue.
+
+- **Usage:** `,suggest <text>`
+
+### `donate`
+Displays contribution and support links to help maintain Hollow's hosting and development infrastructure.
+
+- **Usage:** `,donate`

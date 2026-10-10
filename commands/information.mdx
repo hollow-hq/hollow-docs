@@ -1,0 +1,89 @@
+---
+title: "Information Commands"
+description: "Reference for server metadata, member inspection, avatar downloads, and bot health diagnostics."
+---
+
+import { ParamField, Note, Tip } from '@mintlify/components'
+
+---
+
+## Server & Member Inspection
+
+### `userinfo`
+Displays detailed information about a member, including Discord registration date, server join date, roles, permissions, and active badges.
+
+- **Usage:** `,userinfo [@member]`
+- **Aliases:** `,ui`, `,whois`
+- **Example:** `,userinfo @voby`
+
+### `serverinfo`
+Displays an overview of the server: owner, boost count, boost tier, channel counts, emoji counts, and verification level.
+
+- **Usage:** `,serverinfo` (Alias: `,si`)
+
+### `roleinfo`
+Displays detailed properties of a role: ID, color hex, hoist status, position, mentionability, and member count.
+
+- **Usage:** `,roleinfo <@role>`
+
+### `membercount`
+Displays total members, human users, and bot accounts in the server.
+
+- **Usage:** `,membercount` (Alias: `,mc`)
+
+---
+
+## Profile Assets
+
+### `avatar`
+Fetches a user's global profile picture at full resolution.
+
+- **Usage:** `,avatar [@member]` (Alias: `,av`)
+
+### `serveravatar`
+Fetches a user's server-specific guild avatar if they have one set via Discord Nitro.
+
+- **Usage:** `,serveravatar [@member]` (Alias: `,sav`)
+
+### `banner`
+Fetches a user's profile banner image.
+
+- **Usage:** `,banner [@member]`
+
+### `serverbanner`
+Fetches the server's custom banner image.
+
+- **Usage:** `,serverbanner`
+
+### `hex`
+Extracts the dominant hex color code from a user's avatar.
+
+- **Usage:** `,hex [@member]` (Alias: `,dominant`)
+
+---
+
+## Bot Health & Statistics
+
+### `botinfo`
+Displays Hollow's internal operating statistics: uptime, shard latency, memory usage, server count, and cached user count.
+
+- **Usage:** `,botinfo` (Alias: `,bi`)
+
+### `ping`
+Measures websocket heartbeat response latency.
+
+- **Usage:** `,ping`
+
+### `uptime`
+Shows how long Hollow has been continuously online since its last boot.
+
+- **Usage:** `,uptime` (Aliases: `,up`, `,ut`)
+
+### `boosters` / `boosters lost`
+- `,boosters` — Lists all current server boosters.
+- `,boosters lost` — Shows historical records of members who stopped boosting the server.
+
+### `invite`
+Returns Hollow's official Discord bot authorization invite link.
+
+- **Usage:** `,invite` (Alias: `,inv`)

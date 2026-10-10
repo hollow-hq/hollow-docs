@@ -1,0 +1,89 @@
+---
+title: "VoiceMaster (Join to Create)"
+description: "Dynamic temporary voice channels with interactive button dashboards and complete owner privacy controls."
+---
+
+import { Note, Tip, Warning, Steps, Step } from '@mintlify/components'
+
+**VoiceMaster** is Hollow's dynamic voice channel system. Instead of cluttering your server with dozens of static voice channels, VoiceMaster creates a single "Join to Create" channel. When a member joins, Hollow automatically creates a private, temporary voice room for them, moves them into it, and cleans it up when everyone leaves.
+
+## How it Works
+
+```text
+[User Joins "Join to Create"]
+          │
+          ▼
+[Hollow Generates "User's Channel"]
+          │
+          ▼
+[Hollow Moves User & Posts Controller Interface]
+          │
+          ▼
+[Channel Auto-Deletes Once Empty]
+```
+
+---
+
+## Setting Up VoiceMaster
+
+Deploying VoiceMaster requires a single command from a server administrator:
+
+```text
+,voicemaster setup
+```
+
+Hollow automatically creates:
+1. A voice channel category (default named `voice`).
+2. An **Interface Channel** containing an interactive button dashboard.
+3. A **Join to Create** voice channel.
+
+<Tip>
+  Server owners and admins can reset the setup at any time by running `,voicemaster reset` or delete an existing instance with `,voicemaster delete`.
+</Tip>
+
+---
+
+## Interactive Interface Buttons
+
+Inside the interface channel, channel owners can configure their room using Discord buttons and menus without typing commands:
+
+| Button / Icon | Action | Description |
+| :--- | :--- | :--- |
+| 🔒 **Lock** | Lock Channel | Prevents `@everyone` from connecting to your voice room. |
+| 🔓 **Unlock** | Unlock Channel | Opens your voice room back up to the public. |
+| 👁️ **Hide** | Hide Channel | Hides the voice channel from users who don't have access. |
+| 👁️ **Unhide** | Reveal Channel | Makes the voice channel visible again in the channel list. |
+| ✏️ **Rename** | Rename Channel | Opens a Discord modal dialog to change the channel name. |
+| 👥 **Limit** | Member Limit | Select a maximum user cap (1 to 99). |
+| ⚡ **Bitrate** | Audio Quality | Select channel bitrate (64kbps, 96kbps, 128kbps, etc.). |
+| 🌍 **Region** | Voice Region | Switch voice server region (US East, Rotterdam, Brazil, etc.). |
+| 👑 **Claim** | Claim Ownership | If the channel owner leaves, any occupant can claim the room. |
+| ℹ️ **Info** | Room Info | View bitrate, user limit, lock status, and creation time. |
+
+---
+
+## VoiceMaster Commands
+
+While buttons provide instant convenience, channel owners can also manage their channels via chat commands:
+
+### Access & Privacy
+- `,voicemaster lock` — Locks the channel.
+- `,voicemaster unlock` — Unlocks the channel.
+- `,voicemaster hide` — Hides the channel from public view.
+- `,voicemaster unhide` — Makes the channel visible.
+
+### Member Management
+- `,voicemaster invite @member` — Grants a specific user permission to view and join your locked/hidden room.
+- `,voicemaster uninvite @member` — Revokes permission for that user.
+- `,voicemaster kick @member` — Disconnects a user from your voice channel.
+- `,voicemaster drag @member` — Moves a user from another voice channel into yours.
+- `,voicemaster transfer @member` — Transfers ownership of the voice room to another occupant.
+- `,voicemaster claim` — Takes over ownership if the original owner departed.
+
+### Channel Customization
+- `,voicemaster name <new name>` — Renames your channel.
+- `,voicemaster limit <1-99>` — Changes the member cap.
+- `,voicemaster bitrate <kbps>` — Adjusts voice audio quality.
+- `,voicemaster region <region>` — Sets regional voice routing.
+- `,voicemaster info` — Shows owner, creation time, limit, and lock state.
+- `,voicemaster list` — Lists every active VoiceMaster room in the guild.

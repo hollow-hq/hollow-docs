@@ -1,0 +1,40 @@
+---
+title: "Frequently Asked Questions"
+description: "Answers to common questions regarding Hollow features, hosting, permissions, and configuration."
+---
+
+import { Accordion, AccordionGroup } from '@mintlify/components'
+
+<AccordionGroup>
+  <Accordion title="Why is Hollow not responding to my prefix commands?">
+    Check the following common causes:
+    1. **Custom Prefix:** The server prefix may have been modified. Mentioning the bot (`@Hollow ping`) always works regardless of the custom prefix.
+    2. **Channel Permissions:** Ensure Hollow has `View Channel`, `Send Messages`, and `Embed Links` in that specific channel.
+    3. **Rate Limits:** Hollow enforces per-user and per-channel message cooldowns (3 commands per 5 seconds) to prevent spam.
+    4. **Slash Commands:** Test if `/ping` works.
+  </Accordion>
+
+  <Accordion title="Why does Hollow say 'Missing Permissions' when banning or kicking?">
+    This is almost always a **Discord Role Hierarchy** issue. Discord prevents bots from kicking, banning, or editing anyone whose highest role is equal to or higher than the bot's own highest role. Go to **Server Settings -> Roles** and drag the **Hollow** role above your staff and member roles.
+  </Accordion>
+
+  <Accordion title="What is the difference between Discord permissions and fakeperms?">
+    Native Discord permissions apply everywhere across Discord's desktop, mobile, and web clients. **Fakeperms** exist purely inside Hollow's database. This allows server owners to empower staff with commands like `,mute` or `,purge` without giving them native Discord moderation permissions that could be abused via the Discord interface.
+  </Accordion>
+
+  <Accordion title="Can I use Hollow completely with slash commands?">
+    Yes! All of Hollow's commands are hybrid commands, meaning they are registered with Discord's slash command API (`/`) as well as the text prefix (`,`).
+  </Accordion>
+
+  <Accordion title="How do temporary VoiceMaster channels get cleaned up?">
+    VoiceMaster monitors member leave events. As soon as all users vacate a temporary channel, Hollow initiates an automatic deletion task to prevent empty channel clutter.
+  </Accordion>
+
+  <Accordion title="Is there a web dashboard for Hollow?">
+    Hollow provides a public web showcase and API status at [hollow-phi.vercel.app](https://hollow-phi.vercel.app/). All module configurations are managed directly inside Discord via slash commands, text commands, and interactive button interfaces for maximum speed and zero external login friction.
+  </Accordion>
+
+  <Accordion title="How do I get help or report a bug?">
+    Join the official [Hollow Support Server](https://discord.gg/vpx72Zue2R) and open a ticket. Our development team and support staff are available to assist you.
+  </Accordion>
+</AccordionGroup>

@@ -1,0 +1,79 @@
+---
+title: "Last.fm Integration"
+description: "Display live music scrobbles, profile statistics, top artist charts, and personalized music recommendations."
+---
+
+import { Note, Tip, Card, CardGroup } from '@mintlify/components'
+
+Hollow features deep integration with the **Last.fm** music scrobbling network. Connect your Last.fm username to share what you're listening to, inspect your scrobble statistics, and discover new artists based on your listening habits.
+
+---
+
+## Linking Your Last.fm Account
+
+To link your Discord account to your Last.fm profile:
+
+```text
+,lastfm set YourUsername
+```
+
+Hollow immediately verifies that your username exists on Last.fm. If verified, your profile is stored and linked to your Discord ID.
+
+To unlink or clear your account:
+```text
+,lastfm reset
+```
+
+---
+
+## Available Commands
+
+<CardGroup cols={2}>
+  <Card title="Now Playing" icon="play">
+    Display the track you or another member are currently listening to, including album art, artist scrobbles, and total scrobble count.
+    ```text
+    ,lastfm nowplaying
+    ,lastfm np @member
+    ```
+  </Card>
+
+  <Card title="Scrobbles Overview" icon="chart-simple">
+    View lifetime scrobbles, unique artists played, tracks played, and account registration age.
+    ```text
+    ,lastfm scrobbles
+    ,lastfm scrobbles @member
+    ```
+  </Card>
+
+  <Card title="Top Artists Leaderboard" icon="ranking-star">
+    Interactive paginated list of your top 50 all-time most played artists with exact play counts.
+    ```text
+    ,lastfm topartists
+    ,lastfm topartists @member
+    ```
+  </Card>
+
+  <Card title="Music Recommendations" icon="wand-magic-sparkles">
+    Generates personalized artist recommendations by sampling your top artists and discovering similar musicians.
+    ```text
+    ,lastfm recommendation
+    ```
+  </Card>
+</CardGroup>
+
+---
+
+## Profile Lookup (`whois` / `info`)
+
+Inspect detailed Last.fm profile information for yourself or any other server member who has linked their account:
+
+```text
+,lastfm whois @voby
+,lastfm info
+```
+
+Displays:
+- Linked Last.fm username and avatar
+- Lifetime scrobbles
+- Country of origin
+- Account creation timestamp

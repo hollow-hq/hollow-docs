@@ -1,0 +1,57 @@
+---
+title: "Last.fm Commands"
+description: "Reference for linking Last.fm accounts, displaying scrobbles, top artist charts, and profile lookups."
+---
+
+import { ParamField, Note, Tip } from '@mintlify/components'
+
+---
+
+## Account Management
+
+### `lastfm set`
+Links your Discord account to your Last.fm username.
+
+- **Usage:** `,lastfm set <username>`
+- **Example:** `,lastfm set voby`
+- **Cooldown:** 3 seconds
+
+<ParamField path="username" type="string" required>
+  Your registered Last.fm username.
+</ParamField>
+
+### `lastfm reset`
+Unlinks your Last.fm profile from Hollow.
+
+- **Usage:** `,lastfm reset`
+
+---
+
+## Listening & Charts
+
+### `lastfm nowplaying`
+Displays the track you or another member are currently playing (or most recently played), including album artwork and total scrobble counts.
+
+- **Usage:** `,lastfm nowplaying [@member]`
+- **Aliases:** `,lastfm np`, `,lastfm playing`, `,lastfm now`, `,fm`
+- **Example:** `,lastfm np`
+
+### `lastfm scrobbles`
+Displays lifetime scrobble statistics, unique artist count, track count, and album count.
+
+- **Usage:** `,lastfm scrobbles [@member]`
+
+### `lastfm topartists`
+Generates a paginated leaderboard of your top 50 all-time most played artists with play counts.
+
+- **Usage:** `,lastfm topartists [@member]`
+
+### `lastfm recommendation`
+Generates personalized artist recommendations based on random samples from your top artists library.
+
+- **Usage:** `,lastfm recommendation` (Alias: `,lastfm recommend`)
+
+### `lastfm whois`
+Displays a comprehensive profile card for a member's Last.fm account, including country and registration date.
+
+- **Usage:** `,lastfm whois [@member]` (Alias: `,lastfm info`)

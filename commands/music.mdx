@@ -1,0 +1,62 @@
+---
+title: "Music Commands"
+description: "Reference for streaming tracks, playlists, adjusting volume, and applying DSP audio filters."
+---
+
+import { ParamField, Note, Card, CardGroup } from '@mintlify/components'
+
+To use music commands, you must be connected to a voice channel in the server.
+
+---
+
+## Playback Commands
+
+### `play`
+Searches for and enqueues songs or playlists.
+
+- **Usage:** `,play <query or URL>`
+- **Example:** `,play lofi beats to study to`
+- **Supported Sources:** YouTube, SoundCloud, Spotify links, and direct audio streams.
+
+<ParamField path="query" type="string" required>
+  Song title, artist name, or direct URL.
+</ParamField>
+
+---
+
+### `skip`
+Skips the currently playing song and moves to the next track in the queue.
+
+- **Usage:** `,skip`
+
+---
+
+### `stop`
+Stops playback, clears the queue, and disconnects Hollow from the voice channel.
+
+- **Usage:** `,stop`
+
+---
+
+### `volume`
+Adjusts the music output volume.
+
+- **Usage:** `,volume <1-100>`
+- **Example:** `,volume 75`
+
+<ParamField path="volume" type="integer" required>
+  Target volume percentage between 1 and 100.
+</ParamField>
+
+---
+
+## Audio Presets (`preset`)
+
+Apply or remove real-time DSP audio effects:
+
+- `,preset` — Displays the menu of all available filter presets.
+- `,preset 8d` — Enables 360-degree rotational stereo audio.
+- `,preset nightcore` — Speeds up audio and raises pitch (1.3x).
+- `,preset daycore` — Slows down audio and lowers pitch (0.7x).
+- `,preset earrape` — Applies severe distortion and gain overdrive.
+- `,preset off` — Clears all audio filters.

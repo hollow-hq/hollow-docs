@@ -1,0 +1,64 @@
+---
+title: "Troubleshooting Guide"
+description: "Diagnose and resolve common setup, permission, and voice connection issues."
+---
+
+import { Note, Tip, Warning, Accordion, AccordionGroup } from '@mintlify/components'
+
+If you experience unexpected behavior with Hollow, consult this troubleshooting checklist before reaching out to support.
+
+---
+
+## 1. Permission & Hierarchy Issues
+
+### Symptom: `You're missing permission` or `DiscordException: 403 Forbidden`
+- **Cause:** Either the moderator lacks required rights, or Hollow's role is below the target member in Discord's role hierarchy.
+- **Solution:**
+  1. Open Discord **Server Settings -> Roles**.
+  2. Drag the **Hollow** role above any member roles you intend to moderate.
+  3. Ensure Hollow has the **Manage Roles**, **Ban Members**, and **Kick Members** permissions.
+  4. If using `fakeperms`, verify the user's role has been granted the required permission via `,fakeperms list @Role`.
+
+---
+
+## 2. VoiceMaster Issues
+
+### Symptom: Joining "Join to Create" does not create a new channel
+- **Cause:** Hollow is missing channel creation or member move permissions.
+- **Solution:**
+  1. Check category permissions for the `voice` category.
+  2. Ensure Hollow has `Manage Channels` and `Move Members` explicitly allowed on both the category and the `Join to Create` voice channel.
+  3. Run `,voicemaster setup` again if the category was accidentally deleted.
+
+### Symptom: Interface buttons respond with `Interaction Failed`
+- **Cause:** The interface message was unlinked or the channel row was deleted.
+- **Solution:** Run `,voicemaster interface` to re-send a fresh interactive control panel.
+
+---
+
+## 3. Music Playback Issues
+
+### Symptom: `NodeLink is unavailable` or music stops immediately
+- **Cause:** Voice gateway handshake failure or temporary audio node connectivity drop.
+- **Solution:**
+  1. Disconnect Hollow using `,stop`.
+  2. Move to a different voice channel or switch your voice channel's region in **Channel Settings -> Overview -> Region Override**.
+  3. Re-run `,play <query>`.
+
+---
+
+## 4. Anti-Raid False Positives
+
+### Symptom: Legitimate friends or alt accounts are getting kicked on join
+- **Cause:** Active account age thresholds (`newaccounts`) or default avatar restrictions.
+- **Solution:**
+  1. Whitelist the account in advance: `,antiraid newaccounts whitelist @User` or `,antiraid whitelist @Member`.
+  2. Lower the threshold duration using `,antiraid newaccounts on --do kick --threshold 1`.
+
+---
+
+## 5. Contacting Support
+
+If an issue persists:
+- Run `,botinfo` to check shard status and latency.
+- Join the [Hollow Support Server](https://discord.gg/vpx72Zue2R) and open a ticket with your server ID and the command syntax you attempted.

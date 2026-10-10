@@ -1,0 +1,105 @@
+---
+title: "VoiceMaster Commands"
+description: "Reference for managing dynamic temporary voice channels and VoiceMaster hubs."
+---
+
+import { ParamField, Note, Tip } from '@mintlify/components'
+
+VoiceMaster commands allow channel owners and server administrators to control temporary voice rooms.
+
+---
+
+## Administrative Commands
+
+### `voicemaster setup`
+Initializes VoiceMaster in your guild by creating the parent category, the "Join to Create" voice channel, and the interactive interface text channel.
+
+- **Usage:** `,voicemaster setup`
+- **Permissions:** `Manage Channels`, `Manage Guild`
+- **Cooldown:** 30 seconds per guild
+
+### `voicemaster reset`
+Resets the VoiceMaster setup configuration.
+
+- **Usage:** `,voicemaster reset`
+- **Permissions:** `Manage Guild`
+
+### `voicemaster delete`
+Deletes the temporary voice channel. Can be executed by the channel owner or server staff.
+
+- **Usage:** `,voicemaster delete` (Aliases: `,voicemaster remove`, `,voicemaster close`)
+
+### `voicemaster list`
+Displays a paginated list of all currently active VoiceMaster channels and their respective owners.
+
+- **Usage:** `,voicemaster list` (Alias: `,voicemaster channels`)
+
+---
+
+## Voice Channel Owner Commands
+
+The following commands must be run by the **owner** of an active temporary voice channel:
+
+### `voicemaster lock` / `unlock`
+Locks or unlocks the channel to prevent or allow connections from `@everyone`.
+
+- **Usage:** `,voicemaster lock` / `,voicemaster unlock`
+
+### `voicemaster hide` / `unhide`
+Hides or reveals the channel in the server's channel list.
+
+- **Usage:** `,voicemaster hide` / `,voicemaster unhide`
+
+### `voicemaster name`
+Renames your temporary voice channel.
+
+- **Usage:** `,voicemaster name <new name>`
+- **Example:** `,voicemaster name Chilling & Gaming`
+
+### `voicemaster limit`
+Sets the maximum user cap for the channel.
+
+- **Usage:** `,voicemaster limit <0-99>`
+- **Example:** `,voicemaster limit 5` *(Set to 0 for unlimited)*
+
+### `voicemaster bitrate`
+Adjusts channel audio bitrate quality.
+
+- **Usage:** `,voicemaster bitrate <kbps>`
+- **Example:** `,voicemaster bitrate 96`
+
+### `voicemaster region`
+Changes the voice server region.
+
+- **Usage:** `,voicemaster region [region]`
+- **Supported regions:** `us-central`, `us-east`, `us-south`, `us-west`, `rotterdam`, `brazil`, `hongkong`, `india`, `japan`, `singapore`, `sydney`
+
+### `voicemaster invite` / `uninvite`
+Grants or revokes explicit connection access for a specific member to a locked or hidden channel.
+
+- **Usage:** `,voicemaster invite <member>` / `,voicemaster uninvite <member>`
+
+### `voicemaster kick`
+Disconnects a user from your voice room.
+
+- **Usage:** `,voicemaster kick <member>`
+
+### `voicemaster drag`
+Pulls a user from another voice channel in the server into your VoiceMaster channel.
+
+- **Usage:** `,voicemaster drag <member>`
+
+### `voicemaster transfer`
+Transfers room ownership to another user inside the channel.
+
+- **Usage:** `,voicemaster transfer <member>`
+
+### `voicemaster claim`
+Claims ownership of the voice channel if the original creator has left.
+
+- **Usage:** `,voicemaster claim`
+
+### `voicemaster info`
+Displays detailed information about your temporary voice channel.
+
+- **Usage:** `,voicemaster info`
